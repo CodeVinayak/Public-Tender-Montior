@@ -1,0 +1,2855 @@
+<html lang="en"><head>
+<title>Central Public Works Department - eTenders</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="/resources/assets/js/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/resources/jsFiles/jquery-3.5.1.min.js?ver=2016"></script>  
+<script language="javascript" type="text/javascript" src="../Scripts/collapsepanel.js?ver=2016"></script>
+<script src="/resources/jsFiles/regionvalidations.js?ver=2016" type="text/javascript"></script>	
+
+<style type="text/css" nonce="">
+
+label {
+    display:inline !important;
+}
+
+.dataTables_wrapper .dataTables_length {
+	text-align: center !important;
+}
+
+caption {
+	display: none;
+}
+
+</style>
+
+<script type="text/javascript" nonce="">
+
+$(document).ready(function() {
+	$("#Startdate").hide();
+	$("#Startdate1").hide();
+	$("#Startdatedate").hide();
+	$("#Startdatedate1").hide();
+	  $("#Enddate").hide();
+	  $("#Enddate1").hide();
+	 $("#Enddatedate").hide();
+	 $("#Enddatedate1").hide();
+	 
+	 $("#Published").hide();
+		  $("#Published1").hide();
+		 $("#Publisheddate").hide();
+		 $("#Publisheddate1").hide();
+		 $("#finanicial").hide();
+		 $("#finanicial1").hide();
+		 $("#ECVComparison").hide();
+		 $("#mECVValue1").hide();
+		 $("#mECVValue2").hide();
+		 $("#EMDComparison").hide();
+		 $("#mEMDValue1").hide();
+		 $("#mEMDValue2").hide();
+		 $("#mEMDValue4").hide();
+		 $("#mEMDValue3").hide();
+		 $("#mECVValue3").hide();
+		 $("#mECVValue4").hide();
+		 
+		
+	
+ 	 if( $("#dtBidClosingselect1").val() == 107){
+		
+ 		$("#Startdate").hide();
+ 		$("#Startdate1").hide();
+ 		$("#Startdatedate").hide();
+ 		$("#Startdatedate1").hide();
+ 		  $("#Enddate").hide();
+ 		  $("#Enddate1").hide();
+ 		 $("#Enddatedate").hide();
+ 		 $("#Enddatedate1").hide();
+ 		 
+ 		 $("#Published").hide();
+ 			  $("#Published1").hide();
+ 			 $("#Publisheddate").hide();
+ 			 $("#Publisheddate1").hide();
+ 			$("#finanicial").hide();
+ 			 $("#finanicial1").hide();
+		 
+		 
+		} 
+	 else if($("#dtBidClosingselect1").val() == 108){
+		$("#Startdate").show();
+		  $("#Startdate1").show();
+		  $("#Enddate").hide();
+		  $("#Enddate1").hide();
+		$("#Enddatedate").hide();
+		  $("#Enddatedate1").hide();
+		 $("#Startdatedate").hide();
+		 $("#Startdatedate1").hide();
+		 
+		 $("#Published").hide();
+			  $("#Published1").hide();
+			 $("#Publisheddate").hide();
+			 $("#Publisheddate1").hide();
+			 $("#finanicial").hide();
+			 $("#finanicial1").hide();
+
+		}else if($("#dtBidClosingselect1").val() == 109){
+		  $("#Startdate").hide();
+		  $("#Startdate1").hide();
+		 $("#Startdatedate").hide();
+		 $("#Startdatedate1").hide();
+		  
+		 $("#Enddatedate").show();
+		 $("#Enddatedate1").show();
+		 $("#Enddate").show();
+			  $("#Enddate1").show();
+			
+			 $("#Published").hide();
+				  $("#Published1").hide();
+				 $("#Publisheddate").hide();
+				 $("#Publisheddate1").hide();
+				 $("#finanicial").hide();
+				 $("#finanicial1").hide();
+		//  $("#dtTenderOpening1").val("");
+		  //$("#dtTenderOpening2").val("");
+		}else if($("#dtBidClosingselect1").val() == 110){
+			 $("#Startdate").hide();
+				  $("#Startdate1").hide();
+				 $("#Startdatedate").hide();
+				 $("#Startdatedate1").hide();
+				  
+				 $("#Enddatedate").hide();
+				 $("#Enddatedate1").hide();
+				 $("#Enddate").hide();
+					  $("#Enddate1").hide();
+					
+					 $("#Published").show();
+						  $("#Published1").show();
+						 $("#Publisheddate").show();
+						 $("#Publisheddate1").show();
+						 $("#finanicial").hide();
+						 $("#finanicial1").hide();
+		}else if($("#dtBidClosingselect1").val() == 111){
+			 $("#Startdate").hide();
+				  $("#Startdate1").hide();
+				 $("#Startdatedate").hide();
+				 $("#Startdatedate1").hide();
+				  
+				 $("#Enddatedate").hide();
+				 $("#Enddatedate1").hide();
+				 $("#Enddate").hide();
+					  $("#Enddate1").hide();
+					
+					 $("#Published").hide();
+						  $("#Published1").hide();
+						 $("#Publisheddate").hide();
+						 $("#Publisheddate1").hide();
+						 $("#finanicial").show();
+						 $("#finanicial1").show();
+						 
+		}
+
+
+	
+	
+    $('#searchTender').click(function(e) {
+    	
+    	$("#errorMessage1").html("");
+   	 $("#errorMessage").html("");
+   	 var sTenderNo=	$("#sTenderNo").val();
+   	 var sTenderSubject = $("#sTenderSubject").val();
+   	 if ($("#ECVComparison").val() == "EQ" || $("#ECVComparison").val() == "LT" || $("#ECVComparison").val() == "GT") {
+ 		
+   		
+		 if($("#mECVValue1").val()==""){			 
+			 $("#errorMessage").html("Please Select ECV From Value");
+			
+			 return false;
+		 }
+		
+     }
+    else if ($("#ECVComparison").val() == "BT") {
+    
+    	 if($("#mECVValue1").val()=="" &&  $("#mECVValue1").val()==""){
+    	     	 $("#errorMessage").html("Please Select ECV Values");
+    	    	 return false;
+      
+     } 
+    }
+
+    	
+    if ($("#EMDComparison").val() == "EQ" || $("#EMDComparison").val() == "LT" || $("#EMDComparison").val() == "GT") {
+           if($("#mEMDValue1").val()==""){
+			 
+			 $("#errorMessage").html("Please Select Transaction Fee From Value");
+			 return false;
+			 
+		 }
+     }
+     else if ($("#EMDComparison").val() == "BT") {
+    	 
+    	 if($("#mEMDValue1").val()=="" &&  $("#mEMDValue2").val()==""){
+        	 $("#errorMessage").html("Please Select EMD Values");
+        	 return false;
+          
+         }
+    
+     }  
+	if($("#ECVComparison").val() == "BT") {
+		
+		 if ($("#mECVValue1").val() == "") {
+				 $("#errorMessage").html("Enter ECV From Value");
+				 return false;
+			}
+		  
+		 if ($("#mECVValue2").val() == "") {
+				 $("#errorMessage").html("Enter ECV To Value");
+				 return false;
+			}
+		
+	    if ($("#mECVValue1").val() != "" && $("#mECVValue2").val() != "") {
+	    	 if($("#mECVValue1").val() >= $("#mECVValue2").val()) {
+	    		 $("#errorMessage").html("ECV From value must be less than to ECV To value.");
+	    		 return false;
+	    	 }
+	    }
+	    
+	    if ($("#mECVValue1").val() == "" && $("#mECVValue2").val() != "") {
+			 $("#errorMessage").html("Enter ECV From Value");
+			 return false;
+		}
+	}
+
+	
+	if($("#EMDComparison").val() == "BT") {
+	
+		 if ($("#mEMDValue1").val() == "") {
+				 $("#errorMessage").html("EMD From Value");
+				 return false;
+			}
+		  
+		 if ($("#mEMDValue2").val() == "") {
+				 $("#errorMessage").html("EMD To Value");
+				 return false;
+			}
+		
+	    if ($("#mEMDValue1").val() != "" && $("#mEMDValue2").val() != "") {
+	   	 if($("#mEMDValue1").val() >= $("#mEMDValue2").val()) {
+	   		 $("#errorMessage").html("EMD From value must be less than to EMD To value.");
+	   		 return false;
+	   	 }
+	   }
+	    
+	    if ($("#mEMDValue1").val() == "" && $("#mEMDValue2").val() != "") {
+			 $("#errorMessage").html("Enter EMD From Value");
+			 return false;
+		}
+	}
+   	 
+   	if ($("#dtBidClosing1").val() != "" && $("#dtBidClosing2").val() != "") {
+   		    if(compareDate($("#dtBidClosing1").val(), $("#dtBidClosing2").val()) == false) {
+   		    $("#errorMessage1").html("From Date Should be Lessthan To date");
+   		    return false;
+   		    }
+   		    }
+   	
+   	  if ($("#dtBidClosing1").val() == "" && $("#dtBidClosing2").val() != "") {
+   		    $("#errorMessage1").html("Please Select From Date.");
+   		    return false;
+   		    }
+   	   if ($("#dtBidClosing1").val() != "" && $("#dtBidClosing2").val() == "") {
+   	   		    $("#errorMessage1").html("Please Select To Date.");
+   	   		    return false;
+   	   		    }
+ 
+	if ($("#dtPublishedDateFrom").val() != "" && $("#dtPublishedDateTo").val() != "") {
+   		    if(compareDate($("#dtPublishedDateFrom").val(), $("#dtPublishedDateTo").val()) == false) {
+   		    $("#errorMessage1").html("From Date Should be Lessthan To date");
+   		    return false;
+   		    }
+   		    }
+	if ($("#dtPublishedDateFrom").val() == "" && $("#dtPublishedDateTo").val() != "") {
+   		    $("#errorMessage1").html("Please Select From Date.");
+   		    return false;
+   		    }
+   	   if ($("#dtPublishedDateFrom").val() != "" && $("#dtPublishedDateTo").val() == "") {
+   	   		    $("#errorMessage1").html("Please Select To Date.");
+   	   		    return false;
+   	   		    }
+ 
+	
+   	
+   	if(sTenderNo!=""){
+   		if(!SpChrNotAllow(sTenderNo,"errorMessage1")){
+   			 return false;  
+   		 } 	
+   		if(!allowSomeSpecialCharactersWithAtleastOneNumber(sTenderNo,'sTenderNo','sTenderNoErr'))
+		{
+		return false;  
+		}
+   	}
+   	
+   	if(sTenderSubject!=""){
+   		if(!SpChrNotAllow(sTenderSubject,"errorMessage1")){
+   			 return false;  
+   		 } 
+   		if(!allowSomeSpecialCharacters(sTenderSubject,'sTenderSubject','sTenderSubjectErr'))
+		{
+			return false;
+		}
+   	}
+   	if($("#dtBidClosingselect1").val() == 107){
+		$("#dtBidClosing1").val("");
+		$("#dtBidClosing2").val("");
+		$("#dtPublishedDateFrom").val("");
+		$("#dtPublishedDateTo").val("");
+		$("#nFinancialyear").val("");
+	}
+	 /* if($("#searchvalue").val() === '0'){
+		$("#ECVComparison").val("");
+		$("#mECVValue1").val("");
+		$("#mECVValue2").val("");
+		$("#EMDComparison").val("");
+		$("#mEMDValue1").val("");
+		$("#mEMDValue2").val("");
+	}  */
+   	
+   	temp(tempName, 'tenderDetailsHome');
+    	$('#awardedDataTable').DataTable().destroy();
+   	 $('#awardedDataTable').DataTable( {
+   		    "bPaginate": true,
+   		  	"bInfo": true,		  	
+   		 	"bServerSide" : true,
+   		 	"bProcessing" : true,
+   		 	"bLengthChange": true,
+   			"lengthMenu": [[10, 20, 40, 50, 100], [10, 20, 40, 50, 100]],
+   		 	"bFilter": false,
+   		 	"sAjaxSource" : "TenderwithinOnedayJson.html?"+$("form#tenderDetailsHome").serialize(),
+   		 	"sServerMethod":"POST",
+   		 	"dom": 'C<"clear">rtip<l>',
+   		 	"columnDefs": [ {
+   				"targets": 8,
+   				"orderable": false
+   				},
+   				], 
+   				"drawCallback": function(){				    
+				      $("a.a_fnviewTenderDocuments" ).each(function( index, element ) {
+							 $(this).bind("click", function(){fnviewTenderDocuments($(this).data("pid"),$(this).data("iid"))});
+						 });
+				      $("a.a_viewBtn" ).each(function( index, element ) {
+							 $(this).bind("click", function(){viewBtn($(this).data("iid"),$(this).data("tcid"),$(this).data("pid"))});
+						 });
+				      $("a.a_viewCorrigendum" ).each(function( index, element ) {
+							 $(this).bind("click", function(){viewCorrigendum($(this).data("pid"))});
+						 });
+				   }
+   	    } );
+
+    	
+    });
+});
+$(document).ready(function () {
+	
+	if($("#regionORprojectregion").val()==-1)
+	{
+		$("#region").hide();
+		$("#projectRegion").hide();
+		$("#region1").hide();
+		$("#projectRegion1").hide();
+		$("#headQuarter").hide();
+		$("#headQuarter1").hide();
+		$("#encadredPost").hide();
+		$("#encadredPost1").hide();
+		makeDropdownValuesToDefault();
+	}
+	
+	var days=0;
+	if(days=='0')
+		{
+	 	document.getElementById("hideBlock").style.display = "block";
+	 	document.getElementById("Search by Dates").style.display = "none";
+		document.getElementById("Search by Value").style.display = "none";
+		}
+	
+	
+	$("#products").hide();
+ if ($("#dtBidClosing1").val() != "") {
+		 
+		 $("#btnExportExcel").show();
+	 
+	 }
+	if($("#sProcurementType").val()=="101")
+	{
+		$("#products").hide();
+		$("#work").show();
+// 		$("#ddlDistrict").removeAttr("disabled");
+// 		$("#ddlMandal").removeAttr("disabled");
+	}
+	
+if($("#sProcurementType").val()=="102")
+{
+	$("#products").show();
+	$("#tr_periodOfComplition").hide();
+	$("#work").hide();
+// 	$("#ddlDistrict").val("");
+// 	$("#ddlMandal").val("");
+// 	$("#ddlDistrict").prop('disabled', 'disabled');
+// 	$("#ddlMandal").prop('disabled', 'disabled');
+}
+if($("#sProcurementType").val()=="104")
+{
+	$("#work").show();
+	$("#products").hide();
+// 	$("#ddlDistrict").val("");
+// 	$("#ddlMandal").val("");
+// 	$("#ddlDistrict").prop('disabled', 'disabled');
+// 	$("#ddlMandal").prop('disabled', 'disabled');
+}
+else{
+	$("#work").show();
+	$("#products").hide();
+}
+
+}); 
+
+</script>
+
+<script type="text/javascript" nonce="">
+
+$(document).ready(function() {
+	$('input[id="nTenderID"]').keypress(function (e)
+	 {
+		 if (e.which != 8 && e.which != 0 && e.which != 13 && (e.which < 48 || e.which > 57)) {
+		 $("#errmsg").html("Digits Only").show().fadeOut("slow");
+		 return false;
+		    }});
+	
+	
+	
+	 $("#mECVValue1").keypress(function (e) {
+		 if (e.which != 8 && e.which != 0 && e.which != 13 && (e.which < 48 || e.which > 57)) {
+		 $("#errmsgFrom").html("Digits Only").show().fadeOut("slow");
+		 return false;
+		    }});
+	
+	 $("#mECVValue2").keypress(function (e) {
+		 if (e.which != 8 && e.which != 0 && e.which != 13 && (e.which < 48 || e.which > 57)) {
+		 $("#errmsgTo").html("Digits Only").show().fadeOut("slow");
+		 return false;
+		    }});
+	 
+	 
+	 
+	 
+	 $("#mEMDValue1").keypress(function (e) {
+		 if (e.which != 8 && e.which != 0 && e.which != 13 && (e.which < 48 || e.which > 57)) {
+		 $("#errmsgForTFValue1").html("Digits Only").show().fadeOut("slow");
+		 return false;
+		    }});
+	
+	 $("#mEMDValue1").keypress(function (e) {
+		 if (e.which != 8 && e.which != 0 && e.which != 13 && (e.which < 48 || e.which > 57)) {
+		 $("#errmsgForTFValue2").html("Digits Only").show().fadeOut("slow");
+		 return false;
+		    }});
+	
+	 
+	 /* For Estimated Value of Contract */
+	// $(window).load(function(){
+	$(document).ready(function() {	 
+		if ($("#ECVComparison").val() == ""){ 
+		 $("#mECVValue1").hide();
+	    $("#mECVValue2").hide();
+		 }
+	   
+		if ($("#ECVComparison").val() == "BT"){
+			
+			  $("#mECVValue1").show();
+			   $("#mECVValue2").show(); 
+			
+		   }
+					
+		 if ($("#ECVComparison").val() != "BT" && $("#ECVComparison").val() != "" && $("#ECVComparison").val() != "0") {
+			 
+			 $("#mECVValue1").show();
+			   $("#mECVValue2").hide(); 
+            
+         } 
+		 
+		 $("#ECVComparison").change(function(){
+			 
+			 $("#mECVValue1").val("");
+			 $("#mECVValue2").val("");
+			    	
+				if ($("#ECVComparison").val() == "BT"){
+					
+					  $("#mECVValue1").show();
+					   $("#mECVValue2").show(); 
+					
+				   }
+				 if ($("#ECVComparison").val() != "BT" && $("#ECVComparison").val() != "" && $("#ECVComparison").val() != "0") {
+					 
+					 $("#mECVValue1").show();
+					  $("#mECVValue2").hide();
+					   
+		            
+		         }
+			
+		      });
+			});
+	 
+	 
+	 /*For transaction fee load  */
+	/*  $(window).load(function(){ */
+		 $(document).ready(function() {		 
+		    $("#mEMDValue1").hide();
+		   $("#mEMDValue2").hide(); 
+		   
+		   //alert($("#EMDComparison").val());
+		   if ($("#EMDComparison").val() == "BT"){
+				
+				  $("#mEMDValue1").show();
+				   $("#mEMDValue2").show(); 
+				
+			   }
+			 if ($("#EMDComparison").val() != "BT" && $("#EMDComparison").val() != "" && $("#EMDComparison").val() != "0") {
+				 
+				 $("#mEMDValue1").show();
+				   $("#mEMDValue2").hide(); 
+	            
+	         }
+		
+			 
+			 $("#EMDComparison").change(function() {
+					  $("#mEMDValue1").val("");
+				  	  $("#mEMDValue2").val(""); 
+					if ($("#EMDComparison").val() == "BT"){
+						  $("#mEMDValue1").show();
+						   $("#mEMDValue2").show(); 
+					   }
+					 if ($("#EMDComparison").val() != "BT" && $("#EMDComparison").val() != "" && $("#EMDComparison").val() != "0") {
+						 $("#mEMDValue1").show();
+						 $("#mEMDValue2").hide(); 
+			         }
+			     });
+			 
+			});
+	 
+	 
+	 $('#ddlDistrict').change(function(){
+		// temp(tempName, 'tenderDetailsHome');
+		
+			var queryString = "ddlDistrict=" +$("#ddlDistrict").val()+"&hdfgsajkl="+$("input[name=hdfgsajkl]").val()+"&hdnEncryptValues="+$("form#tenderDetailsHome input[name=hdnEncryptValues]").val()+"&hdnEncryptNames="+$("form#tenderDetailsHome input[name=hdnEncryptNames]").val();
+		    $.ajax({
+				type : "POST",
+				url : "getMandals.html",
+				data : queryString,
+				cache : false,
+				success : function(response) {
+					if (response != "") {
+					    var resplist = response.split('@');
+						var optval = "<option value=''>Select</option>";
+						
+						for ( var i = 0; i < resplist.length - 1; i++) {
+							var complist = resplist[i].split('!');
+								optval += "<option value="+complist[0]+">"+ complist[1] + "</option>";
+						}
+						$("select#ddlMandal").html(optval);
+					}
+						else {
+							var optval = "<option value=''>Select</option>";
+							$("select#ddlMandal").html(optval);
+						}
+						
+						
+					
+				
+				},
+				error : function(e) {
+					alert("Please Select correct value ");
+				},
+				failure : function(e) {
+					alert('Error: ' + e);
+				}
+			});
+			 
+			}); 
+		
+	
+});
+
+/* function focusPopup() {
+	
+	
+	  if(popupWindow != null && !popupWindow.closed) { 
+		  
+		  popupWindow.focus();
+	  return false;
+	  } 
+	  else{
+		  popupWindow = null;
+		  
+	  }
+} */
+/* function freezeParentPage() 
+{ 
+var divRef = document.getElementById('ModalBackgroundDiv');
+
+if ( divRef != null )
+{
+ divRef.style.display = 'block';
+
+ if ( document.body.clientHeight > document.body.scrollHeight ) 
+ { 
+  divRef.style.height = document.body.clientHeight + 'px'; 
+ } 
+ else 
+ {
+  divRef.style.height = document.body.scrollHeight + 'px' ; 
+ }
+
+ divRef.style.width = '100%'; 
+} 
+}  */
+/* 
+function closeWindow()
+{
+if ( (popupWindow != null) && (popupWindow.closed == false) )
+{
+	 popupWindow.close();
+
+ var divRef = document.getElementById('ModalBackgroundDiv'); 
+ divRef.style.display = 'none';
+}
+
+popupWindow = null;
+}
+
+window.onunload = function ()
+{
+closeWindow();
+}
+window.onfocus = function ()
+{
+if ( (popupWindow != null) && (popupWindow.closed == false) )
+{
+	 popupWindow.focus();
+}
+} */
+
+function fnEnableDate(){
+	  if( $("#dtBidClosingselect1").val() == 107){
+		
+ 		$("#Startdate").hide();
+ 		$("#Startdate1").hide();
+ 		$("#Startdatedate").hide();
+ 		$("#Startdatedate1").hide();
+ 		  $("#Enddate").hide();
+ 		  $("#Enddate1").hide();
+ 		 $("#Enddatedate").hide();
+ 		 $("#Enddatedate1").hide();
+ 		 
+ 		 $("#Published").hide();
+ 			  $("#Published1").hide();
+ 			 $("#Publisheddate").hide();
+ 			 $("#Publisheddate1").hide();
+ 			 $("#finanicial").hide();
+ 			 $("#finanicial1").hide();
+		 
+		 
+		} else if($("#dtBidClosingselect1").val()== 111){
+			$("#Startdate").hide();
+	 		$("#Startdate1").hide();
+	 		$("#Startdatedate").hide();
+	 		$("#Startdatedate1").hide();
+	 		  $("#Enddate").hide();
+	 		  $("#Enddate1").hide();
+	 		 $("#Enddatedate").hide();
+	 		 $("#Enddatedate1").hide();
+	 		 
+	 		 $("#Published").hide();
+	 			  $("#Published1").hide();
+	 			 $("#Publisheddate").hide();
+	 			 $("#Publisheddate1").hide();
+	 			$("#Publisheddate1").hide();
+	 			$("#finanicial").show();
+	 			 $("#finanicial1").show();
+	 			
+		}
+	else if($("#dtBidClosingselect1").val()== 109){
+	  $("#Startdate").hide();
+	  $("#Startdate1").hide();
+	  $("#Startdatedate").hide();
+	  $("#Startdatedate1").hide();
+	  $("#Enddate").show();
+	  $("#Enddate1").show();
+	  $("#Enddatedate").show();
+	  $("#Enddatedate1").show();
+	  $("#Published").hide();
+	  $("#Published1").hide();
+	  $("#Publisheddate").hide();
+	  $("#Publisheddate1").hide();
+	  $("#dtTenderOpening1").val("");
+	  $("#dtTenderOpening2").val("");
+	  $("#dtPublishedDateFrom").val("");
+		  $("#dtPublishedDateTo").val("");
+		 $("#finanicial").hide();
+		 $("#finanicial1").hide();
+	  }else{
+		 $("#Startdate").hide();
+			  $("#Startdate1").hide();
+			  $("#Startdatedate").hide();
+			  $("#Startdatedate1").hide();
+			  $("#Enddate").hide();
+			  $("#Enddate1").hide();
+			  $("#Enddatedate").hide();
+			  $("#Enddatedate1").hide();
+			  $("#Published").show();
+			  $("#Published1").show();
+			  $("#Publisheddate").show();
+			  $("#Publisheddate1").show();
+			  $("#dtTenderOpening1").val("");
+			  $("#dtTenderOpening2").val("");
+			 $("#finanicial").hide();
+			 $("#finanicial1").hide();
+			
+	}
+	  if($("#dtBidClosingselect1").val()== ""){
+	  $("#Startdate").show();
+	  $("#Startdate1").show();
+	  $("#Startdatedate").show();
+	  $("#Startdatedate1").show();
+	  $("#Enddate").hide();
+	  $("#Enddate1").hide();
+	  $("#Enddatedate").hide();
+	  $("#Enddatedate1").hide();
+	   $("#Published").hide();
+	  $("#Published1").hide();
+	  $("#Publisheddate").hide();
+	  $("#Publisheddate1").hide();
+	  $("#dtPublishedDateFrom").val("");
+	  $("#dtPublishedDateTo").val("");
+	  $("#dtBidClosing1").val("");
+	  $("#dtBidClosing2").val("");
+	  $("#dtTenderOpening1").val("");
+	  $("#dtTenderOpening2").val("");
+	 $("#finanicial").hide();
+	 $("#finanicial1").hide();
+	  }
+	}
+
+function getCircles(str) {
+	var queryString = "nDepartmentID=" +str+"&hdfgsajkl="+$("input[name=hdfgsajkl]").val()+"&hdnEncryptValues="+$("form#tenderDetailsHome input[name=hdnEncryptValues]").val()+"&hdnEncryptNames="+$("form#tenderDetailsHome input[name=hdnEncryptNames]").val();
+	$.ajax({
+		type : "POST",
+		url : "CircleFinder.html",
+		data : queryString,
+		cache : true,
+		success : function(response) {
+			if (response != "") {
+				var resplist = response.split('@');
+				var optval = "<option value=''>Select</option>";
+				for ( var i = 0; i < resplist.length - 1; i++) {
+					var complist = resplist[i].split('!');
+					 if (complist[0] == '') {
+						optval += "<option value="+complist[0]+" selected ='true'>"
+								+ complist[1] + "</option>";
+					} 
+					 if (complist[0] != '') {
+						optval += "<option value="+complist[0]+">"
+								+ complist[1] + "</option>";
+					} 
+				}
+				$("select#subDeptId").html(optval);
+			} else {
+				var optval = "<option value=''>Select</option>";
+				$("select#subDeptId").html(optval);
+			}
+		},
+		error : function(e) {
+			alert("Please Select correct value ");
+		},
+		failure : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+
+}
+function searchBtn()
+{
+ 
+	 $("#errorMessage1").html("");
+	 $("#errorMessage").html("");
+	 var sTenderNo=	$("#sTenderNo").val();
+	 var sTenderSubject = $("#sTenderSubject").val();
+	
+	 if(sTenderNo!=""){
+	   		if(!SpChrNotAllow(sTenderNo,"errorMessage1")){
+	   			 return false;  
+	   		 } 	
+	   		if(!allowSomeSpecialCharactersWithAtleastOneNumber(sTenderNo,'sTenderNo','sTenderNoErr'))
+			{
+			return false;  
+			}
+	   	}
+	   	
+	   	if(sTenderSubject!=""){
+	   		if(!SpChrNotAllow(sTenderSubject,"errorMessage1")){
+	   			 return false;  
+	   		 } 
+	   		if(!allowSomeSpecialCharacters(sTenderSubject,'sTenderSubject','sTenderSubjectErr'))
+			{
+				return false;
+			}
+	   	}
+	
+	 if ($("#dtTenderOpening1").val() != "" && $("#dtTenderOpening2").val() != "") {
+    	if(compareDate($("#dtTenderOpening1").val(), $("#dtTenderOpening2").val()) == false) {
+    		 $("#errorMessage").html("Bid Document Download Start Date1 must be less than Date2.");
+    		 return false;
+    	}
+    }
+    
+    if ($("#dtTenderOpening1").val() == "" && $("#dtTenderOpening2").val() != "") {
+    		 $("#errorMessage").html("Enter Bid Document Download Start Date1.");
+    		 return false;
+    } 
+    
+    if ($("#dtBidClosing1").val() != "" && $("#dtBidClosing2").val() != "") {
+    	if(compareDate($("#dtBidClosing1").val(), $("#dtBidClosing2").val()) == false) {
+    		 $("#errorMessage").html("Bid Submission Closing Date1 must be less than Date2.");
+    		 return false;
+    	}
+    }
+    
+    if ($("#dtBidClosing1").val() == "" && $("#dtBidClosing2").val() != "") {
+		 $("#errorMessage").html("Enter Bid Submission Closing Date1.");
+		 return false;
+	}
+    
+	 if ($("#ECVComparison").val() == "EQ" || $("#ECVComparison").val() == "LT" || $("#ECVComparison").val() == "GT") {
+		
+	
+		 if($("#mECVValue1").val()==""){			 
+			 $("#errorMessage").html("Please Select ECV From Value");
+			
+			 return false;
+		 }
+		
+     }
+    else if ($("#ECVComparison").val() == "BT") {
+    
+    	 if($("#mECVValue1").val()=="" &&  $("#mECVValue1").val()==""){
+    	     	 $("#errorMessage").html("Please Select ECV Values");
+    	    	 return false;
+      
+     } 
+    }
+
+    	
+    if ($("#EMDComparison").val() == "EQ" || $("#EMDComparison").val() == "LT" || $("#EMDComparison").val() == "GT") {
+           if($("#mEMDValue1").val()==""){
+			 
+			 $("#errorMessage").html("Please Select Transaction Fee From Value");
+			 return false;
+			 
+		 }
+     }
+     else if ($("#EMDComparison").val() == "BT") {
+    	 
+    	 if($("#mEMDValue1").val()=="" &&  $("#mEMDValue2").val()==""){
+        	 $("#errorMessage").html("Please Select EMD Values");
+        	 return false;
+          
+         }
+    
+     }  
+	if($("#ECVComparison").val() == "BT") {
+		
+		 if ($("#mECVValue1").val() == "") {
+				 $("#errorMessage").html("Enter ECV From Value");
+				 return false;
+			}
+		  
+		 if ($("#mECVValue2").val() == "") {
+				 $("#errorMessage").html("Enter ECV To Value");
+				 return false;
+			}
+		
+	    if ($("#mECVValue1").val() != "" && $("#mECVValue2").val() != "") {
+	    	 if($("#mECVValue1").val() >= $("#mECVValue2").val()) {
+	    		 $("#errorMessage").html("ECV From value must be less than to ECV To value.");
+	    		 return false;
+	    	 }
+	    }
+	    
+	    if ($("#mECVValue1").val() == "" && $("#mECVValue2").val() != "") {
+			 $("#errorMessage").html("Enter ECV From Value");
+			 return false;
+		}
+	}
+
+	
+	if($("#EMDComparison").val() == "BT") {
+	
+		 if ($("#mEMDValue1").val() == "") {
+				 $("#errorMessage").html("Transaction Fee From Value");
+				 return false;
+			}
+		  
+		 if ($("#mEMDValue2").val() == "") {
+				 $("#errorMessage").html("Transaction Fee To Value");
+				 return false;
+			}
+		
+	    if ($("#mEMDValue1").val() != "" && $("#mEMDValue2").val() != "") {
+	   	 if($("#mEMDValue1").val() >= $("#mEMDValue2").val()) {
+	   		 $("#errorMessage").html("Transaction Fee From value must be less than to Transaction Fee To value.");
+	   		 return false;
+	   	 }
+	   }
+	    
+	    if ($("#mEMDValue1").val() == "" && $("#mEMDValue2").val() != "") {
+			 $("#errorMessage").html("Enter Transaction Fee From Value");
+			 return false;
+		}
+	}
+//     temp(tempName, 'tenderDetailsHome');
+
+
+	document.tenderDetailsHome.action = "TenderswithinOneday.html";
+	document.tenderDetailsHome.method = "POST";
+	document.tenderDetailsHome.submit();
+	
+}
+
+function compareDate(date1, date2) {
+
+	var date1Array = date1.split("/");
+	var date2Array = date2.split("/");
+	
+	var date1Date = new Date(date1Array[1]+"/"+date1Array[0]+"/"+date1Array[2]); 
+	var date2Date = new Date(date2Array[1]+"/"+date2Array[0]+"/"+date2Array[2]); 
+	var isOk = true;
+	if(date1Date.getTime() >= date2Date.getTime()) {
+		isOk = false;
+	}
+	
+	return isOk;
+}
+
+//View Tender
+
+var popupWindow= null;
+	 function viewBtn(hdnIndentID,hdnTenderCategory,hdnProcurementID)
+	 {
+         if (!window.focus) 
+		 return true;
+           document.tenderDetailsHome.popUPRequestParameter.value = "popUPRequestParameter";
+           document.tenderDetailsHome.hdnPreviousPage.value="TenderswithinOneday.html";
+	       document.tenderDetailsHome.hdnIndentID.value = hdnIndentID;
+	       document.tenderDetailsHome.hdnTenderCategory.value = hdnTenderCategory;
+	       document.tenderDetailsHome.hdnProcurementID.value = hdnProcurementID;
+	       temp(tempName, 'tenderDetailsHome');
+		   document.tenderDetailsHome.action = "ViewTender.html";
+           popupWindow =window.open('', 'mywindow', 'width=1200,height=600,toolbar=no, location=no,directories=no,statusbar=no,menubar=no,scrollbars=yes,copyhistory=no, resizable=no');
+  	       document.tenderDetailsHome.target = 'mywindow';
+    	   document.tenderDetailsHome.submit();
+    	   document.tenderDetailsHome.target = '';
+    	   popupWindow.focus(); 
+    	   window.onmousedown = focusPopup();  
+    	   window.onkeyup = focusPopup(); 
+    	   window.onmousemove = focusPopup();  
+//     	   freezeParentPage(); 
+          return false; 
+      }
+		function focusPopup() {
+
+			if (popupWindow != null && !popupWindow.closed) {
+
+				popupWindow.focus();
+				return false;
+			} else {
+				popupWindow = null;
+
+			}
+		}
+ 	function freezeParentPage() {
+		var divRef = document.getElementById('ModalBackgroundDiv');
+
+		if (divRef != null) {
+			divRef.style.display = 'block';
+
+			if (document.body.clientHeight > document.body.scrollHeight) {
+				divRef.style.height = document.body.clientHeight + 'px';
+			} else {
+				divRef.style.height = document.body.scrollHeight + 'px';
+			}
+
+			divRef.style.width = '100%';
+		}
+	}
+
+	function closeWindow() {
+		if ((popupWindow != null) && (popupWindow.closed == false)) {
+			popupWindow.close();
+
+			var divRef = document.getElementById('ModalBackgroundDiv');
+			divRef.style.display = 'none';
+		}
+
+		popupWindow = null;
+	}
+
+	window.onunload = function() {
+		closeWindow();
+	}
+	window.onfocus = function() {
+		if ((popupWindow != null) && (popupWindow.closed == false)) {
+			popupWindow.focus();
+		}
+	}
+
+
+/* function viewBtn(hdnIndentID,hdnTenderCategory,hdnProcurementID)
+{
+	document.tenderDetailsHome.hdnPreviousPage.value="TenderswithinOneday.html";
+	document.tenderDetailsHome.hdnIndentID.value = hdnIndentID;
+	document.tenderDetailsHome.hdnTenderCategory.value = hdnTenderCategory;
+	document.tenderDetailsHome.hdnProcurementID.value = hdnProcurementID;
+	//temp(tempName, 'tenderDetailsHome');
+	document.tenderDetailsHome.action = "ViewTender.html";
+	document.tenderDetailsHome.method = "POST";
+	document.tenderDetailsHome.submit();
+} */
+
+function fnviewTenderDocuments(hdnProcurementID, hdnIndentID) {
+	
+	  if (!window.focus) 
+			 return true;
+	    document.tenderDetailsHome.popUPRequestParameter.value = "popUPRequestParameter";
+	    document.tenderDetailsHome.hdnFromStatus.value = "moretenders";
+	document.tenderDetailsHome.hdnProcurementID.value = hdnProcurementID;
+	document.tenderDetailsHome.hdnIndentID.value = hdnIndentID;
+	
+           popupWindow =window.open('', 'mywindow', 'width=1200,height=600,toolbar=no, location=no,directories=no,statusbar=no,menubar=no,scrollbars=yes,copyhistory=no, resizable=no');
+  	       document.tenderDetailsHome.target = 'mywindow';
+	
+	document.tenderDetailsHome.hdnPreviousPage.value = "TenderswithinOneday.html";
+	temp(tempName, 'tenderDetailsHome');
+	document.tenderDetailsHome.action = "ViewTenderDocuments.html";
+	document.tenderDetailsHome.method = "POST";
+	document.tenderDetailsHome.submit();
+	
+	  document.tenderDetailsHome.target = '';
+	   popupWindow.focus(); 
+	   window.onmousedown = focusPopup();  
+	   window.onkeyup = focusPopup(); 
+	   window.onmousemove = focusPopup();  
+//	   freezeParentPage(); 
+     return false; 
+	}
+
+function viewCorrigendum(pid) {
+	document.tenderDetailsHome.hdnPreviousPage.value="TenderswithinOneday.html";
+	document.tenderDetailsHome.hdnProcurementID.value = pid;
+	temp(tempName, 'tenderDetailsHome');
+	document.tenderDetailsHome.action = "CorrigendumDetails.html";
+	document.tenderDetailsHome.method = "POST";
+	document.tenderDetailsHome.submit();
+}
+
+
+
+/* function getCities(str) {
+//	temp(tempName, 'tenderDetailsHome');
+	var queryString = "stateId=" + $('#StateName').val()+"&hdfgsajkl="+$("input[name=hdfgsajkl]").val()+"&hdnEncryptValues="+$("form#tenderDetailsHome input[name=hdnEncryptValues]").val()+"&hdnEncryptNames="+$("form#tenderDetailsHome input[name=hdnEncryptNames]").val();
+	$
+			.ajax({
+				type : "POST",
+				url : "cityFinder.html",
+				data : queryString,
+				cache : true,
+				success : function(response) {
+					if (response != "") {
+						var resplist = response.split('@');
+						var optval = "<option value=''>Select</option>";
+						for ( var i = 0; i < resplist.length - 1; i++) {
+							var complist = resplist[i].split('!');
+							if (complist[0] == '') {
+								optval += "<option value="+complist[0]+","+complist[1]+" selected ='true'>"
+										+ complist[1] + "</option>";
+							}
+							if (complist[0] != '') {
+								optval += "<option value="+complist[0]+","+complist[1]+">"
+										+ complist[1] + "</option>";
+							}
+						}
+						$("select#district").html(optval);
+					} else {
+//							alert("No Data Found with The Given Details.."); DONT DELETE IT . . . . 
+						var optval = "<option value=''>Select</option>";
+						$("select#district").html(optval);
+						$("select#mandal").html(optval);
+						$("select#assembly").html(optval);
+						$("select#parliment").html(optval);
+					}
+				},
+				error : function(e) {
+					alert("Please Select correct District ");
+				},
+				failure : function(e) {
+					alert('Error: ' + e);
+				}
+			});
+
+} */
+/* function getMandals(str) {
+	//temp(tempName, 'tenderDetailsHome');
+	var oth = 'others';
+	$
+			.ajax({
+				type : "POST",
+				url : "mandalFinder.html",
+				data : "districtId=" + str+"&hdfgsajkl="+$("input[name=hdfgsajkl]").val()+"&hdnEncryptValues="+$("form#tenderDetailsHome input[name=hdnEncryptValues]").val()+"&hdnEncryptNames="+$("form#tenderDetailsHome input[name=hdnEncryptNames]").val(),
+				cache : true,
+				success : function(response) {
+					if (response != "") {
+						var divdlist = response.split('**');
+						var res1 = divdlist[0].split('@');
+						var optval1 = "<option value=''>Select</option>"; */
+						// 					alert("Mandal Id : ','");
+						/* if ('' == '0') {
+							optval1 += "<option value='0,"+oth+"' selected ='true'>"
+									+ oth + "</option>";
+							document.getElementById("otherMandal").value = '';
+						} else {
+							optval1 += "<option value='0,"+oth+"'>" + oth
+									+ "</option>";
+							document.getElementById("otherMandal").value = '';
+						} */
+						/* for ( var i = 0; i < res1.length - 1; i++) {
+							var complist1 = res1[i].split('!');
+							optval1 += "<option value="+complist1[0]+","+complist1[1]+">"
+										+ complist1[1] + "</option>";
+							
+						}
+						$("select#mandalId").html(optval1);
+
+						var res2 = divdlist[1].split('@');
+						var optval2 = "<option value=''>Select</option>"; */
+						// 					alert(" Assemble ID : ''");
+						/* if ('' == '0') {
+							optval2 += "<option value='0,"+oth+"' selected ='true'>"
+									+ oth + "</option>";
+							document.getElementById("otherAssembly").value = '';
+						} else {
+
+							optval2 += "<option value='0,"+oth+"'>" + oth
+									+ "</option>";
+							document.getElementById("otherAssembly").value = '';
+						} */
+						/* for ( var i = 0; i < res2.length - 1; i++) {
+							var complist2 = res2[i].split('!');
+							
+								optval2 += "<option value="+complist2[0]+","+complist2[1]+">"
+										+ complist2[1] + "</option>";
+							
+						} */
+						// 					optval2 +="<option value='others'>Others</option>";
+					/* 	$("select#assemblyId").html(optval2);
+
+						var res3 = divdlist[2].split('@');
+						var optval3 = "<option value=''>Select</option>"; */
+						// 					alert(" parliment ID : ''");
+						/* if ('' == '0') {
+							optval3 += "<option value='0,"+oth+"' selected ='true'>"
+									+ oth + "</option>";
+							document.getElementById("otherParliament").value = '';
+						} else {
+							optval3 += "<option value='0,"+oth+"'>" + oth
+									+ "</option>";
+							document.getElementById("otherParliament").value = '';
+						} */
+						/* for ( var i = 0; i < res3.length - 1; i++) {
+							var complist3 = res3[i].split('!');
+							
+								optval3 += "<option value="+complist3[0]+","+complist3[1]+">"
+										+ complist3[1] + "</option>";
+							
+						} */
+						// 					optval3 +="<option value='others'>Others</option>";
+					/* 	$("select#parlimentId").html(optval3);
+					} else {
+						alert("No Data Found with The Given Details..");
+						var optval1 = "<option value=''>Select</option>";
+						$("select#mandalId").html(optval1);
+						$("select#assemblyId").html(optval1);
+						$("select#parlimentId").html(optval1);
+					}
+				},
+				error : function(e) {
+					alert("Please Select correct District ");
+				},
+				failure : function(e) {
+					alert('Error: ' + e);
+				}
+			});
+} */
+
+
+/*To get Type of works/Types of products  */
+function ddlProcurementType(str)
+{
+	if($("#sProcurementType").val()=="101")
+		{
+			$("#products").hide();
+			$("#work").show();
+// 			$("#ddlDistrict").removeAttr("disabled");
+// 			$("#ddlMandal").removeAttr("disabled");
+		}
+	
+	if($("#sProcurementType").val()=="102")
+		{
+			$("#products").show();
+			$("#work").hide();
+// 			$("#ddlDistrict").val("");
+// 			$("#ddlMandal").val("");
+// 			$("#ddlDistrict").prop('disabled',true);
+// 			$("#ddlMandal").prop('disabled',true);
+			
+		
+		}
+	if($("#sProcurementType").val()=="104")
+	{
+		$("#work").show();
+		$("#products").hide();
+// 		$("#ddlDistrict").val("");
+// 		$("#ddlMandal").val("");
+// 		$("#ddlDistrict").prop('disabled', 'disabled');
+// 		$("#ddlMandal").prop('disabled', 'disabled');
+	}
+	
+	else{
+			$("#work").show();
+			$("#products").hide();
+			
+		}
+//	temp(tempName, 'tenderDetailsHome');
+	var queryString = "selectprocurementType="+str+"&hdfgsajkl="+$("input[name=hdfgsajkl]").val()+"&hdnEncryptValues="+$("form#tenderDetailsHome input[name=hdnEncryptValues]").val()+"&hdnEncryptNames="+$("form#tenderDetailsHome input[name=hdnEncryptNames]").val();
+	
+	$.ajax({
+		type : "POST",
+		url : "procumenttype.html",
+		data : queryString,
+		cache : false,
+		success : function(response) {
+			if (response != "") {
+
+				
+				optval = null;
+				resplist = response.split('@');
+
+				optval = "<option value=''>Select</option>";
+				for (var i = 0; i < resplist.length - 1; i++)
+				{
+					var complist = resplist[i].split('!');
+
+					optval += "<option value=" + complist[0] + ">" + complist[1] + "</option>";
+
+				}
+				$("select#sTypeofWork").html(optval);
+			
+				
+
+			}
+		
+		},
+		error : function(e) {
+			
+		},
+		failure : function(e) {
+			
+		}
+	});
+	
+}
+
+function searchKeyPress(e)
+{
+    
+    e = e || window.event;
+    if (e.keyCode == 13)
+    {
+        document.getElementById('searchTender').click();
+    }
+}
+
+$(document).ready(function() {
+	$("#VTMSBodyContent_Clear").click(function() {
+	$("#nTenderID").val("");
+	$("#sTenderNo").val("");
+	$("#sTenderSubject").val("");
+	$("#sProcurementType").val("0");
+	$("#tenderType").val("0");
+	$("#sTypeofWork").val("");
+	$("#nDepartmentID").val("0");
+	$("#subDeptId").val("");
+	$("#ECVComparison").val(" ");
+	$("#mECVValue1").val("");
+	$("#mECVValue2").val("");
+	$("#EMDComparison").val(" ");
+	$("#mEMDValue1").val("");
+	$("#mEMDValue2").val("");
+	$("#dtTenderOpening1").val("");
+	$("#dtTenderOpening2").val("");
+	$("#dtBidClosing1").val("");
+	$("#dtBidClosing2").val("");
+	$("#ddlDistrict").val("");
+	$("#ddlMandal").val("");
+	$("#biddingType").val("");
+	$("#beAuctionApplicable").val("");
+	//for to reset region/project region
+	$("#regionORprojectregion").val("-1");
+	$("#region").hide();
+	$("#projectRegion").hide();
+	$("#region1").hide();
+	$("#projectRegion1").hide();
+	$("#headQuarter").hide();
+	$("#headQuarter1").hide();
+	$("#encadredPost").hide();
+	$("#encadredPost1").hide();
+	$("#regionID").val("0");
+	$("#projectRegionID").val("0");
+	$("#headQuarterID").val("0");
+	$("#encadredPostID").val("0");
+	
+	makeDropdownValuesToDefault();
+	$("#sTenderNoErr").html(" ");
+	$("#sTenderSubjectErr").html(" ");
+	$("#dtBidClosingselect1").val("107");
+	
+	  $("#dtPublishedDateFrom").val("");
+		  $("#dtPublishedDateTo").val("");
+		$("#nFinancialyear").val("");
+		$("#searchvalue").val("0");
+		$("#ECVComparison").val("");
+		$("#mECVValue1").val("");
+		$("#mECVValue2").val("");
+		$("#mEMDValue1").val("");
+		$("#mEMDValue2").val("");
+		$("#EMDComparison").val("");
+		$("#nEvalTypeID").val("");
+		$("#nTypeofCompetitive").val("");
+		
+		
+	});
+});
+ 
+function fnTechExportExcel1(){
+	document.tenderDetailsHome.action = "tenderdDtlsExportToXl.html";
+	document.tenderDetailsHome.method = "POST";
+	document.tenderDetailsHome.submit();
+}
+
+function searchBy(val)
+{
+if(val=='Search by Value')
+	{
+	document.getElementById("Search by Dates").style.display = "none";
+	document.getElementById("Search by Value").style.display = "block";
+	}
+if(val=='Search by Dates')
+	{
+	document.getElementById("Search by Dates").style.display = "block";
+	document.getElementById("Search by Value").style.display = "none";
+	}
+	
+if ($("#ECVComparison").val() == ""){ 
+	 $("#mECVValue1").hide();
+   $("#mECVValue2").hide();
+	 }
+  
+	if ($("#ECVComparison").val() == "BT"){
+		
+		  $("#mECVValue1").show();
+		   $("#mECVValue2").show(); 
+		
+	   }
+				
+	 if ($("#ECVComparison").val() != "BT" && $("#ECVComparison").val() != "" && $("#ECVComparison").val() != "0") {
+		 
+		 $("#mECVValue1").show();
+		   $("#mECVValue2").hide(); 
+       
+    } 
+	 
+	 $("#ECVComparison").change(function(){
+		 
+		 $("#mECVValue1").val("");
+		 $("#mECVValue2").val("");
+		    	
+			if ($("#ECVComparison").val() == "BT"){
+				
+				  $("#mECVValue1").show();
+				   $("#mECVValue2").show(); 
+				
+			   }
+			 if ($("#ECVComparison").val() != "BT" && $("#ECVComparison").val() != "" && $("#ECVComparison").val() != "0") {
+				 
+				 $("#mECVValue1").show();
+				  $("#mECVValue2").hide();
+				   
+	            
+	         }
+		
+	      });
+	 
+	 
+	   $("#mEMDValue1").hide();
+	   $("#mEMDValue2").hide(); 
+	   
+	   
+	   if ($("#EMDComparison").val() == "BT"){
+			
+			  $("#mEMDValue1").show();
+			   $("#mEMDValue2").show(); 
+			
+		   }
+		 if ($("#EMDComparison").val() != "BT" && $("#EMDComparison").val() != "" && $("#EMDComparison").val() != "0") {
+			 
+			 $("#mEMDValue1").show();
+			   $("#mEMDValue2").hide(); 
+            
+         }
+	
+		 
+		 $("#EMDComparison").change(function() {
+				  $("#mEMDValue1").val("");
+			  	  $("#mEMDValue2").val(""); 
+				if ($("#EMDComparison").val() == "BT"){
+					  $("#mEMDValue1").show();
+					   $("#mEMDValue2").show(); 
+				   }
+				 if ($("#EMDComparison").val() != "BT" && $("#EMDComparison").val() != "" && $("#EMDComparison").val() != "0") {
+					 $("#mEMDValue1").show();
+					 $("#mEMDValue2").hide(); 
+		         }
+		     });
+	
+	
+}
+
+
+function getZonesCircle(str) {
+	var queryString = "nDepartmentID=" +str+"&hdfgsajkl="+$("input[name=hdfgsajkl]").val()+"&hdnEncryptValues="+$("form#tenderDetailsHome input[name=hdnEncryptValues]").val()+"&hdnEncryptNames="+$("form#tenderDetailsHome input[name=hdnEncryptNames]").val();
+	$.ajax({
+		type : "POST",
+		url : "ZonesAndCircleFinder.html",
+		data : queryString,
+		cache : true,
+		success : function(response) {
+			if (response != "") {
+				//var responseArr = response.split('$');
+				var resplist = response.split('@');
+				//alert(resplist)
+				var optval = "<option value='0'>Select</option>";
+				if(resplist!=null && resplist!="")
+				{
+						for ( var i = 0; i < resplist.length; i++) {
+							var complist = resplist[i].split('!');
+							//alert("Zones"+complist)
+							if(complist!=""||complist!=null)
+								{
+									optval += "<option value="+complist[0]+">"
+											+ complist[1] + "</option>";
+								}
+								else {
+										$("select#sZone").html(optval);
+								}
+						$("select#sZone").html(optval);
+						var optval1 = "<option value='0'>Select</option>";
+						$("select#ddlDivision").html(optval1);
+						$("select#ddlSubDivision").html(optval1);
+						}
+				}
+				else
+					{
+						$("select#sZone").html(optval);
+					}
+				
+				/* optval=null;
+				resplist = responseArr[1].split('@');
+				//alert(resplist)
+					if(resplist!=null && resplist!="")
+						{
+							optval = "<option value='0'>Select</option>";
+							for ( var i = 0; i < resplist.length-1; i++) {
+							var complist1 = resplist[i].split('!');
+							//alert("Circles"+complist1)
+							if(complist1!=""||complist1!=null)
+								{
+									optval += "<option value="+complist1[0]+" >"
+											+ complist1[1] + "</option>";
+								}
+								else {
+										//$("select#ddlCircle").html(optval);
+										$("select#ddlDivision").html(optval);
+										$("select#ddlSubDivision").html(optval);
+								}
+							//$("select#ddlCircle").html(optval);
+							var optval1 = "<option value='0'>Select</option>";
+							$("select#ddlDivision").html(optval1);
+							$("select#ddlSubDivision").html(optval1);
+							}
+						}
+					else {
+						optval = "<option value='0'>Select</option>";
+							//$("select#ddlCircle").html(optval);
+							$("select#ddlDivision").html(optval);
+							$("select#ddlSubDivision").html(optval);
+					} */
+			}
+			
+			else
+				{
+					var optval = "<option value='0'>Select</option>";
+						$("select#sZone").html(optval);
+						//$("select#ddlCircle").html(optval);	
+						$("select#ddlDivision").html(optval);
+						$("select#ddlSubDivision").html(optval);
+				}
+		},
+		error : function(e) {
+			alert("Please Select correct value ");
+		},
+		failure : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+	//document.getElementById("ddlCircle").disabled=false;
+	//document.getElementById("sZone").disabled=false;
+}
+function getDivisions(str) {
+	var queryString = "nDepartmentID=" +str+"&hdfgsajkl="+$("input[name=hdfgsajkl]").val()+"&hdnEncryptValues="+$("form#tenderDetailsHome input[name=hdnEncryptValues]").val()+"&hdnEncryptNames="+$("form#tenderDetailsHome input[name=hdnEncryptNames]").val();
+	$.ajax({
+		type : "POST",
+		url : "divisionsFinder.html",
+		data : queryString,
+		cache : true,
+		success : function(response) {
+			if (response != "") {
+				var resplist = response.split('@');
+				//alert(resplist)
+				var optval = "<option value='0'>Select</option>";
+				$("select#ddlSubDivision").html(optval);
+				for ( var i = 0; i < resplist.length-1; i++) {
+					var complist = resplist[i].split('!');
+					//alert("divisions"+complist)
+					if(complist!=null && complist!="")
+						{
+							optval += "<option value="+complist[0]+">"
+									+ complist[1] + "</option>";
+						}
+						else {
+								$("select#ddlDivision").html(optval);
+								$("select#ddlSubDivision").html(optval);
+						}
+				$("select#ddlDivision").html(optval);
+				}
+			}
+			else
+			{
+				var optval = "<option value='0'>Select</option>";
+					$("select#ddlDivision").html(optval);
+					$("select#ddlSubDivision").html(optval);
+			}
+		},
+		error : function(e) {
+			alert("Please Select correct value ");
+		},
+		failure : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+
+}
+
+function getSubDivisions(str) {
+	var queryString = "nDepartmentID=" +str+"&hdfgsajkl="+$("input[name=hdfgsajkl]").val()+"&hdnEncryptValues="+$("form#tenderDetailsHome input[name=hdnEncryptValues]").val()+"&hdnEncryptNames="+$("form#tenderDetailsHome input[name=hdnEncryptNames]").val();
+	$.ajax({
+		type : "POST",
+		url : "subDivisionsFinder.html",
+		data : queryString,
+		cache : true,
+		success : function(response) {
+			if (response != "") {
+				var resplist = response.split('@');
+				//alert(resplist)
+				var optval = "<option value='0'>Select</option>";
+				for ( var i = 0; i < resplist.length-1; i++) {
+					var complist = resplist[i].split('!');
+					//alert("Zones"+complist)
+					if(complist!=null && complist!="")
+						{
+							optval += "<option value="+complist[0]+">"
+									+ complist[1] + "</option>";
+						}
+						else {
+								$("select#ddlSubDivision").html(optval);
+						}
+				$("select#ddlSubDivision").html(optval);
+				}
+			}
+			else
+			{
+				var optval = "<option value='0'>Select</option>";
+					$("select#ddlSubDivision").html(optval);
+			}
+		},
+		error : function(e) {
+			alert("Please Select correct value ");
+		},
+		failure : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+
+}
+
+/* function disableCircles(val)
+{
+	if(val!="0")
+		{
+			document.getElementById("ddlCircle").disabled=true; //for disable
+			$("#ddlCircle").val("0");
+		}
+	else
+		{
+		document.getElementById("ddlCircle").disabled=false; // for enable
+		}
+} */
+
+/* function disableZones(val)
+{
+	if(val!="0")
+	{
+		document.getElementById("sZone").disabled=true; //for disable
+		$("#sZone").val("0");
+	}
+	else
+		{
+		document.getElementById("sZone").disabled=false; // for enable
+		}
+} */
+
+
+function fnEnableValus(){
+	
+
+if($("#searchvalue").val()==113){
+	$("#ECVComparison").show();
+	 $("#mECVValue1").show();
+	 $("#mECVValue2").show();
+	 $("#EMDComparison").hide();
+	 $("#mEMDValue1").hide();
+	 $("#mEMDValue2").hide();	
+	 $("#mECVValue3").show();
+	 $("#mECVValue4").show();
+}
+if($("#searchvalue").val()==114){
+	 $("#EMDComparison").show();
+	 $("#mEMDValue1").show();
+	 $("#mEMDValue2").show();	
+	 $("#ECVComparison").hide();
+	 $("#mECVValue1").hide();
+	 $("#mECVValue2").hide();
+	 $("#mEMDValue3").show();
+	 $("#mEMDValue4").show();
+}
+if( $("#searchvalue").val() == 0){
+		
+	 $("#EMDComparison").hide();
+	 $("#mEMDValue1").hide();
+	 $("#mEMDValue2").hide();	
+	 $("#ECVComparison").hide();
+	 $("#mECVValue1").hide();
+	 $("#mECVValue2").hide();
+	 $("#mEMDValue3").hide();
+	 $("#mEMDValue4").hide();
+ 		}
+	
+	
+}
+
+</script>
+
+
+</head>
+<body>
+<div id="wrapper">
+<div id="content">
+	
+
+
+
+<title>Central Public Works Department - eTenders</title>
+
+
+
+<link rel="stylesheet" href="/resources/themes/currenttheme/style_new-cpwd.css" type="text/css">
+<link rel="stylesheet" href="/resources/jsFiles/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css">
+<link rel="stylesheet" href="/resources/themes/latestTheme/homepage/css/homePageCSS.css" type="text/css">
+<link rel="stylesheet" href="/resources/themes/latestTheme/homepage/css/font-awesome.min.css" type="text/css">
+<script src="/resources/jsFiles/pace.js?ver=2016"></script>
+<script src="/resources/jsFiles/jquery-3.5.1.min.js?ver=2016" type="text/javascript"></script>
+<script src="/resources/PagerFiles/jquery-latest.min.js?ver=2016"></script>
+<script src="/resources/PagerFiles/jquery.tablesorter.js?ver=2016"></script>
+<script src="/resources/PagerFiles/jquery.tablesorter.pager.js?ver=2016"></script>
+<script src="/resources/jsFiles/GlobalValidation.js?ver=2019-1"></script>
+<script type="text/javascript" src="resources/jsFiles/pbkdf2.js?ver=2019"></script>
+<script src="/resources/jsFiles/jquery.easing.min.js"></script>
+<link href="/resources/themes/latestTheme/homepage/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/themes/latestTheme/homepage/css/customHomePage.css" type="text/css" rel="stylesheet">
+
+
+<script type="text/javascript" src="/resources/jsFiles/moment.min.js"></script>
+<script src="/resources/jsFiles/bootstrap.js?ver=2025"></script>
+<script type="text/javascript" src="/resources/jsFiles/bootstrap-datetimepicker.min.js"></script>
+
+<script id="js" nonce="">$(function(){
+	var pagerOptions = {		
+		container: $(".pager"),
+		size: 10
+
+	};
+	$("#pagetable")		
+		.tablesorter({
+			theme: 'blue',
+			widthFixed: false,
+			showProcessing   : true, 
+			widgets: ['zebra']
+		})
+		.tablesorterPager(pagerOptions);
+
+});
+function staticHomeEn(){
+	if(confirm("\u092F\u0939 \u0906\u092A\u0915\u094B English \u092D\u093E\u0937\u093E \u092E\u0947\u0902 \u0932\u0947 \u091C\u093E\u090F\u0917\u093E\u0964 \u0915\u094D\u092F\u093E \u0906\u092A \u0935\u093E\u0915\u0908 \u0907\u0938 \u092D\u093E\u0937\u093E \u092E\u0947\u0902 \u0938\u094D\u0935\u093F\u091A \u0915\u0930\u0928\u093E \u091A\u093E\u0939\u0924\u0947 \u0939\u0948\u0902?"))
+		{
+		document.cookie="googtrans =/en/en"
+		document.forms[0].action=window.location.pathname+"?lang=en";
+	 	document.forms[0].method="POST";
+	 	document.forms[0].submit();
+		}
+	}
+
+function staticHomeHi(){
+	if(confirm("This will lead you to \u0939\u093F\u0902\u0926\u0940 language. Are you sure to switch to this language?"))
+		{
+	document.cookie="googtrans =/en/hi"
+	document.forms[0].action=window.location.pathname+"?lang=hi";
+ 	document.forms[0].method="POST";
+ 	document.forms[0].submit();
+		}
+}
+</script>
+<script type="text/javascript" nonce="">
+	$(document).ready(function() {		
+		$(".GridBG tbody tr:even").addClass("GridEvenRow");
+		$(".GridBG tbody tr:odd").addClass("GridOddRow");
+		$(".TenderHeadeBG tr:even").addClass("GridEvenRow");
+		$(".TenderHeadeBG tr:odd").addClass("GridOddRow");		
+		
+	}); 
+</script>
+
+
+
+<script type="text/javascript" nonce="">
+$(window).load(function() {
+	$(".loader").fadeOut("slow");
+})
+</script>
+
+<style type="text/css" nonce="">
+
+.HeaderCPWD {
+    background: url(resources/themes/currenttheme/homepage/images/cpwd-header.jpg) no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 130px;
+}
+
+</style>
+
+
+
+
+
+
+
+			<div class="container-fluid">
+				<div class="row header222" id="myDIV-1">
+					
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="footer-social-icons">
+							<ul class="social-icons">
+								<li title="Facebook"><a data-url="https://www.facebook.com/CPWD-231996314139401/" class="nongovtexternallink" href="#"> <i><img src="resources/themes/currenttheme/images/icon-facebook.png"></i></a></li>
+								<li title="Twitter"><a href="#" data-url="https://twitter.com/CPWDGOV" class="nongovtexternallink"> <i><img src="resources/themes/currenttheme/images/icon-x.png"></i></a></li>
+								<li title="YouTube"><a class="nongovtexternallink" href="#" data-url="https://www.youtube.com/channel/UC1loO2KmJwawydqgOBD8-8Q"> <i><img src="resources/themes/currenttheme/images/icon-youtube.png"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="pull-right">
+							
+							<div id="custonLang" title="select language">
+								<div class="dropdown">
+							        <div class="dropdown-toggle" type="text" id="menu1" data-toggle="dropdown" aria-expanded="false">
+							        	<a href="#"> Select Language <span class="caret"></span> </a>
+							        </div>
+							        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="languageSelect">
+							          <li role="presentation" value="en"><a role="menuitem" tabindex="-1" id="a_staticHomeEn" href="#">En</a></li>
+							          <li role="presentation" value="hi"><a role="menuitem" tabindex="-1" id="a_staticHomeHi" href="#">हि</a></li>
+							        </ul>
+							    </div>
+							</div>
+
+							<div class="btn-group">
+													
+								<a href="#" id="a_screenReader" class="btn2" title="Screen Reader"><i class="fa fa-wheelchair"> </i></a> <a href="#" id="btnDecrease" class="decrease btn2" title="Decrease font size"><i class="fa fa-font size1"> <i class="fa fa-minus minus">
+									</i>
+								</i></a> <a href="#" id="btnReset" class="resetMe btn2" title="Default font size"><i class="fa fa-font size1">
+								</i></a> <a href="#" id="btnIncrease" class="increase btn2" title="Increase font size"><i class="fa fa-font size1">
+										<i class="fa fa-plus plus"> </i>
+								</i></a> <a href="#" class="white btn2" title="Gray Scale" id="btnGrayScale"><i class="fa fa-font white size1"> </i></a> <a href="#" title="Normal Scale" class="whiteR btn2" id="btnNormalScale"><i class="fa fa-font size1"> </i></a>
+									
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		<!-- <nav class="navbar navbar-default  HeaderCPWD" title="Central Public Works Department - eTenders" alt="Central Public Works Department - eTenders">
+		<div class="container-fluid">
+
+		</div>
+		</nav> -->
+		
+		<!-- cpwdHeaderDiv Starts Here -->
+			<div class="cpwdHeaderDiv" title="Central Public Works Department - eTenders">
+
+				<div class="cpwd-header-left">
+					<img src="/resources/themes/currenttheme/homepage/css/cpwd-header-left.png">
+					<div class="headText-1"> Government Of India </div> 
+					<div class="headText-2"> Ministry Of Housing &amp; Urban Affairs </div>
+				</div>
+				<div class="cpwd-header-center">
+					<img src="/resources/themes/currenttheme/homepage/css/cpwd-header-center.png">
+				</div>
+				<div class="cpwd-header-right">
+					
+					<img src="/resources/themes/currenttheme/homepage/css/cpwd-header-right.png">
+					
+					<div class="headText-1"> Central Public Works Department </div> 
+					<div class="headText-2"> Excellence in Public Works </div>
+					
+				</div>
+
+			</div>
+			<!-- cpwdHeaderDiv Ends Here -->
+		
+	<script src="/resources/themes/currenttheme/homepage/css/grayCSS.js"></script>
+	
+
+
+
+
+
+<title>Central Public Works Department - eTenders</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<script src="/resources/themes/currenttheme/homepage/css/grayCSS.js"></script>
+<script type="text/javascript" nonce="">
+
+	function misReport()
+	{
+		document.forms[0].action = "mis-reports.html";
+		document.forms[0].method = "POST";
+		document.forms[0].submit();
+	}
+	function fnPreLogin(url){  
+		temp(tempName, document.forms[0].name);
+		document.forms[0].action = url;
+		document.forms[0].method = "POST";
+		document.forms[0].submit();
+		}  
+	
+	function fnRegionLinksBasedOnDays(url,days)
+    {
+		var input = document.createElement("input");
+		input.setAttribute("type", "hidden");
+		input.setAttribute("name", "days");
+		input.setAttribute("value", days);
+		document.querySelector("form").appendChild(input);
+		document.forms[0].days.value = days;
+   	 temp(tempName, document.forms[0].name);
+   	 document.forms[0].action = url;
+     	document.forms[0].method = "POST";
+     	document.forms[0].submit(); 
+    }
+	
+	</script>
+
+
+		
+		<!--  -->
+			<div class="">
+				<nav class="navbar navbar-default padding0imp">
+					<div class="navbar-header">
+						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-navbar">
+							<span class="sr-only">Toggle navigation</span> <span class="colorblack">Menu</span>
+
+						</button>
+						<a title="Home Page" class="" href="#" id="a_login"> <div class="icon-homepage-6 m0C"> </div> </a>
+					</div>
+					<div class="collapse navbar-collapse bgMenu" id="main-navbar">
+						<ul class="nav navbar-nav">
+							
+							<!--  -->
+							<li title="Tender Information" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								Tender Information<span class="glyphicon glyphicon-chevron-down pull-right"></span> </a>
+								<ul class="dropdown-menu" role="menu">
+									<li title="Latest Corrigendum"><a href="#" id="a_CorrigendumMore">Latest Corrigendum <span class="vRight"></span></a></li>
+									<li title="Opened Tenders"><a href="#" id="a_TenderDetailsHome">Opened Tenders</a></li>
+									<li title="All Tenders"><a href="#" id="a_tenderAwardedDetails">All Tenders</a></li>
+									<li title="Tenders for Submission Within 24 Hrs"><a href="#" id="a_TendersClosingwithinOneday">Tenders for Submission Within 24 Hrs</a></li>
+									<li title="Manual Tenders"><a href="#" id="a_manualTendersList">Manual Tenders</a></li>									
+								</ul>
+							</li>
+							<!--  -->
+
+							<!--  -->
+							<li title="Quick Links " class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+									Quick Links 
+								<span class="glyphicon glyphicon-chevron-down pull-right"></span> </a>
+								<ul class="dropdown-menu" role="menu">
+									<li title="E-Auctions"><a href="#" data-url="https://eauction.cpwd.gov.in" class="externallink1">E-Auctions</a></li>
+									<li title="MIS Reports"><a href="#" id="a_misReport">MIS Reports</a></li>
+									<li title="Forgot password"><a href="#" data-url="https://forgotpassword.cpwdcld.net" class="externallink1" id="a_forgotPassword1">Forgot password</a></li>
+									<li title="Reset Certificate"><a href="#" id="a_certificateReset">Reset Certificate</a></li>
+									<li title="Blocked Suppliers"><a href="#" id="a_blockedSuppliers">Blocked Suppliers</a></li>
+								</ul></li>
+							<!--  -->
+							
+							<li title="Downloads"><a href="#" id="a_downloads">Downloads</a></li>
+							
+							<li title="Helpdesk"><a href="#" id="a_helpdesk">Helpdesk</a></li> 
+							
+							<li title="Vendor Registration"><a href="#" id="a_TermsAndConditions">Vendor Registration</a></li>
+							
+							<!--  -->
+							<li title="Help" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Help <span class="glyphicon glyphicon-chevron-down pull-right"></span> </a>
+								<ul class="dropdown-menu" role="menu">
+										<li title="FAQ"><a href="#" id="a_faqs">FAQ</a></li>
+										<li title="Raise Help Ticket"><a href="#" id="a_raiseticket">Raise Help Ticket</a></li>
+								</ul></li>
+							<!--  -->
+							
+							
+							<li title="Sitemap"><a href="#" id="a_sitemap">Sitemap</a> </li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<!--  -->
+		
+		<!-- Navbar Ends Here -->
+		<input type="hidden" name="days" id="days" value="0">
+	<script src="/resources/jsFiles/homemenu.js"></script>
+	<script type="text/javascript" src="resources/jsFiles/temp.test.js?ver=2016"></script> 
+<script type="text/javascript" src="resources/jsFiles/tempTest.js?ver=2016"></script>
+<script type="text/javascript" src="resources/jsFiles/temp.js?ver=2017"></script>
+
+
+	<script src="/resources/jsFiles/script.js"></script>
+	<input type="hidden" name="days" id="days" value="0">
+	<script src="/resources/jsFiles/homemenu.js"></script>
+	<script type="text/javascript" nonce="">
+if(document.getElementById("a_staticHomeEn")){document.getElementById("a_staticHomeEn").addEventListener("click",function(){staticHomeEn()})}
+if(document.getElementById("a_staticHomeHi")){document.getElementById("a_staticHomeHi").addEventListener("click",function(){staticHomeHi()})}
+</script>
+<script type="text/javascript" nonce="">
+
+$(document).ready(function() {	
+	$(document).on("click",".externallink1",function(){
+		 if(confirm("This link will take you to an external web site."))
+		 {
+			 
+       window.open(this.getAttribute("data-url"), '_blank');
+		 }
+		 
+
+		});
+	$(document).on("click",".nongovtexternallink",function(){
+		if(confirm("This link will take you to non government web site."))
+			{
+      window.open(this.getAttribute("data-url"), '_self');
+			}
+	 
+		});
+});</script>
+
+
+
+			<form id="tenderDetailsHome" name="tenderDetailsHome" onkeypress="searchKeyPress(event);" action="/TenderswithinOneday.html" method="post">
+				
+				<div class="pageContainer full">
+					
+
+
+
+					<div id="hideBlock" class="displaynone" style="display: block;">
+
+						<div id="ModalBackgroundDiv" style="position: absolute; top: 0px; left: 0px; background-color: black; z-index: 100; opacity: 0.8; filter: alpha(opacity =   60); -moz-opacity: 0.8; overflow: hidden; display: none"></div>
+						<div align="center">
+							<span id="errorMessage1" class="colorred"></span>
+						</div>
+
+						<!--  -->
+						<div class="row noMargin">
+							<div class="col-lg-12 mtb-1">
+								<div class="box box-info">
+									<div class="box-header with-border p-t-1">
+									
+										<!--  -->
+										<div class="tblHeading">
+											<div class="tblHeadingLeft"> &nbsp; </div>
+												<div class="tblHeadingCenter text-center"><span class="PageTitleNew text-white">Select Search Criteria</span> </div>
+											<div class="tblHeadingRight"> &nbsp; </div>
+										</div>
+										<!--  -->
+									
+									</div>
+									<div class="box-body">
+										<div class="table-responsive">
+											<table class="table table-bordered">
+												<tbody>
+													<tr>
+														<td align="left" width="15%" class="tdlight"><span id="VTMSBodyContent_lblTenderid" class="Text">Tender ID</span></td>
+														<td align="left" width="30%" class="tdwhite"><input id="nTenderID" name="nTenderID" class="wTxt45" type="text" value="" maxlength="8">&nbsp;<span id="errmsg" class="colorred"></span> <label class="colorred"><span id="errmsg"></span></label> <!-- <input name="ctl00$VTMSBodyContent$Txttenderid" type="text" id="VTMSBodyContent_Txttenderid" title="Tender id accepts only integer values." class="TextBox" /> -->
+															<span class="colorred"></span><span id="VTMSBodyContent_ctl01" class="colorred displaynone"> Allows only
+																integers</span><span class="colorred"></span></td>
+																
+																<td align="left" width="15%" class="tdlight"><span id="" class="Text">Region/Project Region</span></td>
+														<td align="left" width="40%" class="tdwhite"><select id="regionORprojectregion" name="regionORprojectregion" class="wTxt45" onchange="regiorprojectregionChange()">
+																<option value="-1">Select</option>
+																<option value="2">Head Quarter</option>
+																<option value="0">Region</option>
+																<option value="1">Project Region</option>
+																<option value="3">Encadred Post</option>
+							
+														</select></td>
+														
+													</tr>
+
+													<tr>
+													<td align="left" class="tdlight"><span id="VTMSBodyContent_lblTenderNumber" class="Text">NIT/RFP NO</span></td>
+														<td align="left" class="tdwhite"><input id="sTenderNo" name="sTenderNo" class="wTxt45" onblur="allowSomeSpecialCharactersWithAtleastOneNumber(this.value,'sTenderNo','sTenderNoErr')" type="text" value=""> <!-- <input name="ctl00$VTMSBodyContent$txtTenderNo" type="text" id="VTMSBodyContent_txtTenderNo" title="IFB/Tender Number accepts Alfa Numarics and only [#-_+(),.?:[] @%&amp;:;]These special characters." class="TextBox" /> -->
+															<span class="colorred"></span> <span id="VTMSBodyContent_ctl00" class="colorred displaynone">
+																IFB/Tender Number accepts Alfa Numarics and only
+																[#-_+(),.?:[] @%:;]These special characters.</span> <span class="colorred" id="sTenderNoErr"></span></td>
+																
+															<td align="left" class="tdlight" id="projectRegion" style="display: none;"><span id="VTMSBodyContent_lblTenderOpeningDate" class="Text">Project Region Name	</span></td>
+
+														<td align="left" class="tdwhite" id="projectRegion1" style="display: none;"><select id="projectRegionID" name="projectRegionID" class="wTxt45" onchange="getZonesCircle(this.value)">
+																<option value="0" selected="selected">Select</option>
+																
+																	<option value="2482">-</option>
+																
+																	<option value="478">Project Region Chandigarh</option>
+																
+																	<option value="468">Project Region Chennai</option>
+																
+																	<option value="453">Project Region Delhi</option>
+																
+																	<option value="464">Project Region Kolkata</option>
+																
+																	<option value="486">Project Region Mumbai</option>
+																
+																	<option value="487">Project Region New Delhi</option>
+																
+															</select> 
+															
+															<label class="colorred"></label></td>
+															<td align="left" class="tdlight" id="headQuarter" style="display: none;"><span id="VTMSBodyContent_lblTenderOpeningDate" class="Text">Head Quarter Name</span></td>
+
+														<td align="left" class="tdwhite" id="headQuarter1" style="display: none;"><select id="headQuarterID" name="headQuarterID" class="wTxt45" onchange="getZonesCircle(this.value)">
+																<option value="0" selected="selected">Select</option>
+																
+																	<option value="2496">Head Quarter</option>
+																
+															</select> <label class="colorred"></label></td>	
+														<td align="left" class="tdlight" id="encadredPost" style="display: none;"><span class="Text">Encadred Post Name</span></td>
+
+														<td align="left" class="tdwhite" id="encadredPost1" style="display: none;"><select id="encadredPostID" name="encadredPostID" class="wTxt45" onchange="getZonesCircle(this.value)">
+																<option value="0" selected="selected">Select</option>
+																
+																	<option value="2890">MoEFCC</option>
+																
+															</select> <label class="colorred"></label></td>		
+															
+															<td align="left" class="tdlight" id="region" style="display: none;"><span id="VTMSBodyContent_lblTenderOpeningDate" class="Text"> Region Name	</span></td>
+			
+																	<td align="left" class="tdwhite" id="region1" style="display: none;"><select id="regionID" name="regionID" class="wTxt45" onchange="getZonesCircle(this.value)">
+																			<option value="0" selected="selected">Select</option>
+																			
+																				<option value="481">Bengaluru</option>
+																			
+																				<option value="484">Bhopal</option>
+																			
+																				<option value="488">Border Works</option>
+																			
+																				<option value="477">Chandigarh</option>
+																			
+																				<option value="446">Chennai</option>
+																			
+																				<option value="454">Delhi</option>
+																			
+																				<option value="1836">ERP unit</option>
+																			
+																				<option value="479">Guwahati</option>
+																			
+																				<option value="482">Hyderabad</option>
+																			
+																				<option value="2589">JAMMU</option>
+																			
+																				<option value="2591">KOCHI</option>
+																			
+																				<option value="480">Kolkata</option>
+																			
+																				<option value="485">Lucknow</option>
+																			
+																				<option value="2590">PATNA</option>
+																			
+																				<option value="2588">Projects  Delhi</option>
+																			
+																				<option value="491">Test Region</option>
+																			
+																		</select> <label class="colorred"></label></td>
+						
+															
+								
+															
+														
+
+														
+													</tr>
+													<tr>
+													 <td align="left" class="tdlight"><span id="VTMSBodyContent_lblBidSubmissionClosingDate" class="Text">Name of Work</span></td>
+
+
+														<td align="left" class="tdwhite"><input id="sTenderSubject" name="sDesc" class="wTxt45" onblur="allowSomeSpecialCharacters(this.value,'sTenderSubject','sTenderSubjectErr')" type="text" value="" size="50">
+																<span class="colorred" id="sTenderSubjectErr"></span>
+																</td> 
+																<td align="left" class="tdlight"><span id="VTMSBodyContent_lblTenderType" class="Text">Zone/Circle</span></td>
+													
+														<td align="left" class="tdwhite"><select id="sZone" name="sZone" class="wTxt45" onchange="getDivisions(this.value)"><option value="0">Select</option></select></td>
+													</tr>
+													<tr>
+													<td align="left" class="tdlight"><span id="" class="Text">Tender Type</span></td>
+														<td align="left" class="tdwhite"><select id="biddingType" name="biddingType" class="wTxt45">
+																<option value="">Select</option>
+																<option value="101">Open</option><option value="102">Limited</option>
+															</select></td>
+															
+															
+															<td align="left" class="tdlight"><label id="lblTenderNo" class="TextHead">Division</label></td>
+																<td align="left" class="tdwhite"><select id="ddlDivision" name="ddlDivision" class="wTxt45" onchange="getSubDivisions(this.value);getSubDivisions(this.value)"><option value="0">Select</option></select></td>
+
+													
+															
+													
+													</tr>
+													<tr>
+													<td align="left" class="tdlight"><span id="VTMSBodyContent_lblTenderType" class="Text">Procurement Type</span></td> 
+																
+																
+																
+														<td align="left" class="tdwhite"><select id="sProcurementType" name="sProcurementType" class="wTxt45" onchange="ddlProcurementType(this.value)">
+																<option value="0">Select</option>
+																
+																	<option value="101">Works</option>
+																
+																	<option value="102">Goods</option>
+																
+																	<option value="104">Services</option>
+																
+															</select></td> 
+															
+																	
+																<td align="left" class="tdlight"><label class="TextHead" id="lblTenderID">Sub Division</label></td>
+																<td align="left" class="tdwhite"><select id="ddlSubDivision" name="ddlSubDivision" class="wTxt45"><option value="0">Select</option></select> &nbsp;<span id="errmsg"></span></td>
+																	
+                                                     </tr>
+													<!-- 							<tr> -->
+
+													
+
+
+													
+													
+
+													
+													<!-- 							</tr> -->
+
+
+													
+													 <tr>
+													 <td align="left" class="tdlight"><span id="products1" class="Text">Bid Type</span></td>
+															<td align="left" class="tdwhite"><select id="nEvalTypeID" name="nEvalTypeID" style="width:30%" class="wTxt45">
+													<option value="">Select</option>
+													<option value="101">Percentage</option><option value="102">Item Rate</option><option value="103">EPC Percentage</option><option value="104">EPC Item Rate</option><option value="105">Expression of Interest</option><option value="107">QCBS Percentage</option><option value="108">QCBS Item Rate</option><option value="109">Lumpsum</option><option value="110">EOI Technical</option>
+
+												</select><span id="errevalutionType" class="error"></span></td>
+													 
+																<td align="left" class="tdlight"><span id="" class="Text">Date Criteria</span></td>
+
+														<td align="left" class="tdwhite"><select id="dtBidClosingselect1" name="dtBidClosingselect" class="selectAuto wTxt45" onchange="fnEnableDate()">
+																<option value="107">Select</option>
+																
+																<option value="109">Bid Submission End Date</option>
+																<option value="110">Tender Published Date</option>
+																<option value="111">Year Wise</option>
+
+															</select>
+
+															<div id="Enddatedate" class="dInline" style="display: none;">
+																<input id="dtBidClosing1" name="dtBidClosing1" class="w80 datepickerwithouttime" placeholder="From" type="text" value="" autocomplete="off">
+															</div>
+
+															<div id="Enddatedate1" class="dInline" style="display: none;">
+																<input id="dtBidClosing2" name="dtBidClosing2" class="w80 datepickerwithouttime" placeholder="To" type="text" value="" autocomplete="off">
+															</div>
+																<div id="Publisheddate" class="dInline" style="display: none;"><input id="dtPublishedDateFrom" name="dtPublishedDateFrom" class="w80 datepickerwithouttime" placeholder="From" type="text" value="" autocomplete="off"></div>
+
+														<div id="Publisheddate1" class="dInline" style="display: none;"><input id="dtPublishedDateTo" name="dtPublishedDateTo" class="w80 datepickerwithouttime" placeholder="To" type="text" value="" autocomplete="off"></div>
+																
+																<div id="finanicial1" class="dInline" style="display: none;"><select id="nFinancialyear" name="nFinancialyear">
+																<option value="">Select</option>
+													
+														<option value="2021-2022">2021-2022</option>
+													
+														<option value="2022-2023">2022-2023</option>
+													
+														<option value="2023-2024">2023-2024</option>
+													
+														<option value="2024-2025">2024-2025</option>
+													
+												</select>
+												<input type="hidden" id="evalutionType" name="evalutionType" value="">
+												</div>
+
+														</td>	
+															
+															
+													
+													</tr> 
+													
+													<tr>
+														
+													<td align="left" class="tdlight"><span id="products1" class="Text">Type of Work/Package	</span>
+														<!-- <span
+															id="work" class="Text"> Type of Work</span> --></td>
+														<td align="left" class="tdwhite"><select id="sTypeofWork" name="sTypeofWork" style="width:30%" class="wTxt45">
+																
+																
+																	<option value="">Select</option>
+																	
+																
+
+															</select></td>	
+														
+														
+														
+														
+														
+														
+													
+															
+														<td align="left" class="tdlight"><span id="" class="Text">Value Criteria</span></td>
+															
+															<td align="left" class="tdwhite"><select id="searchvalue" name="searchval" class="selectAuto wTxt45" onchange="fnEnableValus()">
+																<option value="0">Select</option>
+																<option value="113">ECV</option> 
+															    <option value="114">EMD</option>  
+															</select>
+														
+															<div id="ECVComparisonbt" class="dInline">
+																<select id="ECVComparison" name="ECVComparison" style="display: none;">
+																<option value="0">Select</option>
+																<option value="EQ">Equal</option>
+																<option value="LT">LessThan</option>
+																<option value="GT">GreaterThan</option>
+																<option value="BT">Between</option>
+																</select>
+															</div>
+														
+															<div id="mECVValue3" class="dInline" style="display: none;">
+																<input id="mECVValue1" name="mECVValue1" class="w80" type="text" value="" maxlength="10" style="display: none;">
+																<span id="errmsgFrom" class="colorred"></span>
+															</div>
+														
+															<div id="mECVValue4" class="dInline" style="display: none;">
+															<input id="mECVValue2" name="mECVValue2" class="w80" type="text" value="" maxlength="10" style="display: none;">
+															<span id="errmsgTo" class="colorred"></span>
+															</div>
+														
+															<div id="EMDComparisonbt" class="dInline">
+															<select id="EMDComparison" name="EMDComparison" style="display: none;">
+																<option value="0">Select</option>
+																<option value="EQ">Equal</option>
+																<option value="LT">LessThan</option>
+																<option value="GT">GreaterThan</option>
+																<option value="BT">Between</option>
+															</select>
+															</div>
+														
+															<div id="mEMDValue3" class="dInline" style="display: none;">
+															<input id="mEMDValue1" name="mEMDValue1" class="w80" type="text" value="" maxlength="10" style="display: none;">
+																<span id="errmsgForTFValue1" class="colorred"></span>
+															</div>
+														
+															<div id="mEMDValue4" class="dInline" style="display: none;">
+															<input id="mEMDValue2" name="mEMDValue2" class="w80" type="text" value="" maxlength="10" style="display: none;">
+																<span id="errmsgForTFValue2" class="colorred"></span>
+															</div>
+														</td>
+															
+															</tr>
+															<tr>
+													<td align="left" class="tdlight"><span class="Text">Competitive Bidding Type</span></td>		
+															
+											<td class="GridOddRow" width="30%" align="left"><select id="nTypeofCompetitive" name="nTypeofCompetitive" style="width:30%" class="wTxt45">
+													<option value="">Select</option>
+													<option value="101">NCB</option><option value="102">ICB</option>
+												</select>
+												<span id="nTypeofCompetitiveErr" class="error"></span>
+												</td>
+															
+															</tr>
+														
+														
+													 
+									
+											
+										
+										
+												
+											
+													 
+													 
+													
+												
+								<!-- 						
+								<tr>
+										<td  id="finanicial" align="right" width="25%" class="tdlight"><span
+												id="VTMSBodyContent_Label1" class="Text">Financial Years</span></td>
+											
+													</tr> -->
+													</tbody></table>
+										
+											<div class="btnDiv">
+							<input type="button" value="Search" id="searchTender" class="Button">&nbsp; <input type="button" name="ctl00$VTMSBodyContent$Clear" value="Reset" id="VTMSBodyContent_Clear" class="Button">
+						</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+										
+						<!--  -->
+
+						<div align="center">
+							<b><label class="colorred"></label></b> <b><label class="colorred"></label></b> <span id="errorMessage" class="colorred"></span>
+						</div>
+
+
+						<!--  -->
+					
+						<!--  -->
+
+						<!-- <header class="card-header" id="divHeader4">Search by Value</header> -->
+
+						
+
+						
+
+						<!--  -->
+						<!-- <div class="row noMargin" id="Search by Dates">
+							<div class="col-lg-12 mtb-1">
+								<div class="box box-info">
+									<div class="box-header with-border p-t-1" id="divHeader4">
+										<h3>Search by Dates</h3>
+									</div>
+									<div class="box-body">
+										<div class="table-responsive">
+											<table class="table tablesorter-blue">
+												<tbody> -->
+													
+
+													
+						<!--  -->
+
+						<!--  -->
+						
+						<!--  -->
+
+						<!-- <section class="card">
+								<header class="card-header" id="divHeader4"> Search by
+									Dates</header>
+							</section> -->
+
+
+						
+
+						<!-- <div align="right">
+							<input type="button" id="btnExportExcel" value="ExportExcel"
+								class="Button" onclick="fnTechExportExcel1()"
+								style="display: none" />
+								<input type="button" id="exportpdf" value="Download PDF" class="Button" onclick="fnExportPdf()" >		
+						</div> -->
+
+					</div>
+					
+					
+					
+					<!--  -->
+					<div class="row noMargin">
+						<div class="col-lg-12 mtb-1">
+						
+								
+								
+								
+									<div class="box-header nobg with-border p-t-1">
+						<!--  -->
+							<div class="tblHeading w100">
+									<div class="tblHeadingCenter text-center w100"><span class="PageTitleNew">
+											
+									
+									
+									
+										
+											
+											
+												List of all Tenders as per Search Criteria
+												
+											
+										
+									
+								
+									</span> </div>
+							</div>
+						<!--  -->
+					</div>
+								
+								
+								
+								
+								
+								
+						
+							<div class="box box-info">
+								<div class="box-body">
+									<div class="table-responsive">
+										<!-- <table id="pagetable13" class="table tablesorter-blue"> -->
+										<div id="awardedDataTable_wrapper" class="dataTables_wrapper no-footer"><div class="clear"></div><div id="awardedDataTable_processing" class="dataTables_processing" style="display: none;">Processing...</div><table class="table table-bordered tablesorter-blue dataTable no-footer" id="awardedDataTable" width="100%" role="grid" aria-describedby="awardedDataTable_info" style="width: 100%;">
+											<thead>
+												<tr role="row"><th width="8%" class="sorting_asc" tabindex="0" aria-controls="awardedDataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Tender ID: activate to sort column descending" style="width: 57.4px;">Tender ID</th><th width="10%" class="sorting" tabindex="0" aria-controls="awardedDataTable" rowspan="1" colspan="1" aria-label="NIT/RFP NO: activate to sort column ascending" style="width: 188.4px;">NIT/RFP NO</th><th class="sorting" tabindex="0" aria-controls="awardedDataTable" rowspan="1" colspan="1" aria-label="Name of Work / Subwork / Packages: activate to sort column ascending" style="width: 173.4px;">Name of Work / Subwork / Packages</th><th class="tdCenter sorting" tabindex="0" aria-controls="awardedDataTable" rowspan="1" colspan="1" aria-label="Tender Publishing Office: activate to sort column ascending" style="width: 71.4px;">Tender Publishing Office</th><th class="sorting" tabindex="0" aria-controls="awardedDataTable" rowspan="1" colspan="1" aria-label="Estimated Cost: activate to sort column ascending" style="width: 74.4px;">Estimated Cost</th><th class="sorting" tabindex="0" aria-controls="awardedDataTable" rowspan="1" colspan="1" aria-label="EMD Amount: activate to sort column ascending" style="width: 58.4px;">EMD Amount</th><th class="sorting" tabindex="0" aria-controls="awardedDataTable" rowspan="1" colspan="1" aria-label="Bid Submission Closing Date &amp;amp; Time : activate to sort column ascending" style="width: 69.4px;">Bid Submission Closing Date &amp; Time </th><th class="sorting" tabindex="0" aria-controls="awardedDataTable" rowspan="1" colspan="1" aria-label="Bid Opening Date &amp;amp; Time: activate to sort column ascending" style="width: 62.4px;">Bid Opening Date &amp; Time</th><th width="5%" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Action" style="width: 35.4px;">Action</th></tr>
+											</thead>
+											<tbody>
+											<tr role="row" class="odd"><td class="sorting_1"><div class="tCenter">111811</div></td><td>01/SE/Jalandhar/2025-26</td><td>Construction of Prahari Grah, SO s Mess with 45 Suites and 40 Bedded Mahila Barrack, Quarter Guard, Trademen Shop of 12BN BSF at BSF Campus DBN Shikar</td><td><div class="tCenter">Project Region Chandigarh - SE -Jalandhar - EE-Amritsar</div></td><td><span class="customTextfield"> ₹</span>20,19,74,518</td><td><span class="customTextfield"> ₹</span>30,19,745</td><td>06/06/2025 15:00</td><td>06/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="110648" data-iid="111483" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a class="a_viewCorrigendum" href="#" data-pid="110648" onclick="viewCorrigendum(110648);"> <img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Corrigendum Details" src="resources/themes/currenttheme/images/enterDetails.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="110648" data-iid="111483" onclick="fnviewTenderDocuments(110648,111483);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="even"><td class="sorting_1"><div class="tCenter">112061</div></td><td>02/CE/NDZ-I/DED-101/2025-26</td><td>Provision of Fire Safety Measures at AHQ, Vayu Bhawan, New Delhi.</td><td><div class="tCenter">Delhi - CE(NDZ)-I - EE(E)-I</div></td><td><span class="customTextfield"> ₹</span>1,81,36,047</td><td><span class="customTextfield"> ₹</span>3,62,721</td><td>05/06/2025 15:00</td><td>05/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="110898" data-iid="111733" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a class="a_viewCorrigendum" href="#" data-pid="110898" onclick="viewCorrigendum(110898);"> <img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Corrigendum Details" src="resources/themes/currenttheme/images/enterDetails.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="110898" data-iid="111733" onclick="fnviewTenderDocuments(110898,111733);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="odd"><td class="sorting_1"><div class="tCenter">112207</div></td><td>18//EE(E)/AE(E)/GESD-II/2025-26</td><td>RMO lifts at CPWD office building Bamunimaidan, Guwahati. (SH: Comprehensive maintenance of one no 13 passenger Johnson make lift)<br><b>Subwork/Packages:</b>Comprehensive maintenance of one no 13 passenger Johnson make lift</td><td><div class="tCenter">Guwahati - CE - GUWAHATI - EE(E)-Guwahati - AE-E-2</div></td><td><span class="customTextfield"> ₹</span>1,48,548</td><td><span class="customTextfield"> ₹</span>2,971</td><td>10/06/2025 15:00</td><td>10/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="111044" data-iid="111879" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a class="a_viewCorrigendum" href="#" data-pid="111044" onclick="viewCorrigendum(111044);"> <img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Corrigendum Details" src="resources/themes/currenttheme/images/enterDetails.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="111044" data-iid="111879" onclick="fnviewTenderDocuments(111044,111879);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="even"><td class="sorting_1"><div class="tCenter">112233</div></td><td>NIT17/EE/PE/2025-26</td><td>Providing Comprehensive Consultancy Services for design and curation of existing Museum at Rashtrapati Bhavan New Delhi</td><td><div class="tCenter">Delhi - SE(President Estate) - EE(PE)</div></td><td><span class="customTextfield"> ₹</span>0</td><td><span class="customTextfield"> ₹</span>1,00,000</td><td>11/06/2025 15:00</td><td>11/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="111070" data-iid="111905" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a class="a_viewCorrigendum" href="#" data-pid="111070" onclick="viewCorrigendum(111070);"> <img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Corrigendum Details" src="resources/themes/currenttheme/images/enterDetails.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="111070" data-iid="111905" onclick="fnviewTenderDocuments(111070,111905);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="odd"><td class="sorting_1"><div class="tCenter">112543</div></td><td>04/SE&amp;PD/EE/SURAT/2025-26</td><td>Renovation and Major Structural Repairing of 1) Mechanical Engineering Dept., 2) Electrical Engg. Dept., 3) Chemical Engg. Department, 4) Central Computer Centre, 5) Civil Engineering Department A wing, 6) Civil Engineering Department B wing, 7) Water Resources Engg. Lab and 8) Advanced Hydraulics Lab including internal Electrical Installations work at SVNIT Campus, Surat.</td><td><div class="tCenter">Project Region Mumbai - SE&amp;PD-SVNIT Surat - EE-Surat</div></td><td><span class="customTextfield"> ₹</span>33,10,26,273</td><td><span class="customTextfield"> ₹</span>43,10,263</td><td>06/06/2025 15:00</td><td>06/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="111380" data-iid="112215" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a class="a_viewCorrigendum" href="#" data-pid="111380" onclick="viewCorrigendum(111380);"> <img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Corrigendum Details" src="resources/themes/currenttheme/images/enterDetails.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="111380" data-iid="112215" onclick="fnviewTenderDocuments(111380,112215);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="even"><td class="sorting_1"><div class="tCenter">112618</div></td><td>18/NIT/EE(E)-Agra/2025-26</td><td>RMO EI and Fans, 11/0.433 KV Sub-station, Lifts, Fire fighting system, DG sets, water supply pumpsets etc at GPOA Building, Kendralaya Sanjay Place, Agra. (SH:- Comprehensive AMC of 8 Passengers capacity, 02 Nos OTIS make lifts during 2025-27<br><b>Subwork/Packages:</b>Electrical works</td><td><div class="tCenter">Lucknow - SE -Agra - EE(E)-Agra</div></td><td><span class="customTextfield"> ₹</span>7,87,548</td><td><span class="customTextfield"> ₹</span>15,751</td><td>10/06/2025 15:00</td><td>10/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="111455" data-iid="112290" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a class="a_viewCorrigendum" href="#" data-pid="111455" onclick="viewCorrigendum(111455);"> <img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Corrigendum Details" src="resources/themes/currenttheme/images/enterDetails.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="111455" data-iid="112290" onclick="fnviewTenderDocuments(111455,112290);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="odd"><td class="sorting_1"><div class="tCenter">112657</div></td><td>06/2025-26/C-Div/Delhi/4C</td><td>A/R &amp; M/O to Jam Nagar House, New Delhi during 2025-26 SH Providing of Security Guard at Vacated Offices in Jam Nagar House, New Delhi &amp; Jodhpur Officers Hostel, C-Hexagon, India Gate, New Delhi<br><b>Subwork/Packages:</b>Providing of Security Guard</td><td><div class="tCenter">Delhi - CE(NDZ)-II - EE-C-DIV</div></td><td><span class="customTextfield"> ₹</span>52,64,731</td><td><span class="customTextfield"> ₹</span>1,05,295</td><td>06/06/2025 17:00</td><td>06/06/2025 17:30</td><td><a href="#" class="a_viewBtn" data-pid="111494" data-iid="112329" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="111494" data-iid="112329" onclick="fnviewTenderDocuments(111494,112329);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="even"><td class="sorting_1"><div class="tCenter">112727</div></td><td>15/EE(E)(Vizag)/2025-26</td><td>SITC of 13 passenger lift at Customs and Central Excise office, port area, Visakhapatnam.<br><b>Subwork/Packages:</b>One</td><td><div class="tCenter">Hyderabad - CE-VIJAYAWADA - EE(E) Vizag</div></td><td><span class="customTextfield"> ₹</span>33,11,105</td><td><span class="customTextfield"> ₹</span>66,222</td><td>11/06/2025 15:00</td><td>11/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="111564" data-iid="112399" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="111564" data-iid="112399" onclick="fnviewTenderDocuments(111564,112399);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="odd"><td class="sorting_1"><div class="tCenter">112729</div></td><td>11/EE/Q Divn/2025-26</td><td>AR and MO to various flats under 2/Q sub Division  New Delhi dg 2025-26 ( SH: Preventive measure taken for wooden work in 319 ( Moti Bagh Bapudham ),
+ SC 317 (Moti Bagh) SC 308 (Sector 12 R K Puram)</td><td><div class="tCenter">Delhi - CE(NDZ)-III - EE-Q-Div</div></td><td><span class="customTextfield"> ₹</span>26,20,023</td><td><span class="customTextfield"> ₹</span>52,400</td><td>10/06/2025 15:00</td><td>10/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="111566" data-iid="112401" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="111566" data-iid="112401" onclick="fnviewTenderDocuments(111566,112401);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr><tr role="row" class="even"><td class="sorting_1"><div class="tCenter">112767</div></td><td>05/EE/TRICHY-I/02/NIT/SE(TRICHY)/CPWD/2025-26 - Recall 1</td><td>Construction of 2 Lakh litres capacity RCC overheaded tank with 25 metre staging height, 1 No bore well, Dismantling of GI shed &amp; laying of DI Pipes from OHT to Boys Hostel &amp; Academic Building locations, Paver Blocks &amp; other miscellaneous works at NIFTEM, Thanjavur.</td><td><div class="tCenter">Project Region Chennai - SE-TRICHY - EE-TRICHY</div></td><td><span class="customTextfield"> ₹</span>1,22,36,394</td><td><span class="customTextfield"> ₹</span>2,44,728</td><td>09/06/2025 15:00</td><td>09/06/2025 15:30</td><td><a href="#" class="a_viewBtn" data-pid="111604" data-iid="112439" data-tcid="101"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Tender Details" src="resources/themes/currenttheme/images/search_button.gif"></a>&nbsp;<a class="a_viewCorrigendum" href="#" data-pid="111604" onclick="viewCorrigendum(111604);"> <img style="border: none;" data-toggle="tooltip" data-placement="left" title="View Corrigendum Details" src="resources/themes/currenttheme/images/enterDetails.gif"></a>&nbsp;<a href="#" class="a_fnviewTenderDocuments" data-pid="111604" data-iid="112439" onclick="fnviewTenderDocuments(111604,112439);"><img style="border: none;" data-toggle="tooltip" data-placement="left" title="Download Tender Documents" src="resources/themes/currenttheme/images/Doc.PNG"></a>&nbsp;</td></tr></tbody>
+										<caption style="caption-side: top-right" class="PageTitleNew">New Tenders - All Active Online &amp; Offline tenders</caption></table><div class="dataTables_info" id="awardedDataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 834 records </div><div class="dataTables_paginate paging_simple_numbers" id="awardedDataTable_paginate"><a class="paginate_button previous disabled" aria-controls="awardedDataTable" data-dt-idx="0" tabindex="0" id="awardedDataTable_previous">Previous</a><span><a class="paginate_button current" aria-controls="awardedDataTable" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="awardedDataTable" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="awardedDataTable" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="awardedDataTable" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="awardedDataTable" data-dt-idx="5" tabindex="0">5</a><span class="ellipsis">…</span><a class="paginate_button " aria-controls="awardedDataTable" data-dt-idx="6" tabindex="0">84</a></span><a class="paginate_button next" aria-controls="awardedDataTable" data-dt-idx="7" tabindex="0" id="awardedDataTable_next">Next</a></div><div><div class="dataTables_length" id="awardedDataTable_length"><label><span class="gridSmall"> Show <select name="awardedDataTable_length" aria-controls="awardedDataTable" class=""><option value="10">10</option><option value="20">20</option><option value="40">40</option><option value="50">50</option><option value="100">100</option></select> records </span></label></div></div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  -->
+
+					<!--  -->
+					<div class="row noMargin">
+						<div class="col-lg-12 mtb-1">
+							<div class="box box-info">
+								<div class="box-header with-border p-t-1">
+									<h3>Icons Representation</h3>
+								</div>
+								<div class="box-body">
+									<div class="table-responsive">
+										<table class="table tablesorter-blue">
+											<tbody><tr>
+												<td align="center" width="5%" class="tdlight"><img src="/resources/themes/currenttheme/images/search_button.gif"></td>
+												<td align="left" class="tdwhite">View Tender Details</td>
+
+												<td align="center" width="5%" class="tdlight"><img src="/resources/themes/currenttheme/images/enterDetails.gif"></td>
+												<td align="left" class="tdwhite">Corrigendum Details</td>
+
+												<td align="center" width="5%" class="tdlight"><img src="/resources/themes/currenttheme/images/Doc.PNG"></td>
+												<td align="left" class="tdwhite">Download Tender Documents</td>
+											</tr>
+										</tbody></table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  -->
+
+					<input type="hidden" name="hdnPreviousPage" value=""> <input type="hidden" name="hdnIndentID" value=""> <input type="hidden" name="hdnTenderCategory" value=""> <input type="hidden" name="hdnProcurementID" value=""> <input type="hidden" name="hdnType" id="hdnType" value="">
+					<input type="hidden" name="hdnPreviousPge" id="hdnPreviousPge" value="TenderswithinOneday.html"> <input type="hidden" name="hdnFromStatus" value=""> <input type="hidden" name="typeOfWorkFromConsolidation" value=""> <input type="hidden" name="popUPRequestParameter" value=""> <input type="hidden" name="selectedCircleDivison" value=""> <input type="hidden" name="selectedDepartmentID" value=""> <input type="hidden" name="selectedProcurementType" value=""> <input type="hidden" name="selectedTypeofWork" value=""> <input type="hidden" name="hdnDays" value="0"><input type="hidden" name="hdnOfficeId" value="">
+				</div>
+			<div>
+<input type="hidden" name="hdfgsajkl" value="8a82b4ac-23da-40e6-8d8c-d55ce190a4f7">
+<input type="hidden" name="hdnEncryptNames" value="LQPNHd42QGiA4m1RBJQ1I8/LKGZtufXKgmN0hcsbQ/DtToWHoAcHv0tpIBhx/QTi/TnUBWJmzjBZMY5hsubRQ4Ep/fBsr9SWwYN3bn1nxvnBclNWkivSX8khQPzJh5u5ay7s4fWk9mQdSrGUkt9L7gihNC3N4KRk5vm/+REPUuenVmMitykpitKPySU7O1eEj1zI0PRoPrI42jISeZg2cVcdMtM34U6M6c3EEDh1G86shFiNpNm+39j6MBCE0nwRairo6pOSm6PzlWpOD+7TmGykdB98ARTN4gTgdtMTCPF07emVMpO4DgfY7PHA1YJLd/HKN7SxO6N8favqLzrSYZJAM759OIdXmbdOERbIlxRX9aevUhS7xcORCFBmR9VNpJ7LX0rwTxkKe/QdF3V8fZeqeN4gRkJzL4HcH76u5n8MCxD+GlXSdjf9FdDA1LRpg4aSRoYLIIcHOvLUsBY3675eQUZ8ubbPXm7qmkeCOobBGhiC9o7hFAKDdihfaA220+wOl5aOVPS8wnqlzq3GHfe+CFtSLylL9HiJmj6CTkq7U2Onpou/JNWOn+5p3wrsBL0w/UUyMRko+72NwYskk7KCscivqW4NmSKDAlOnJ+8T+4Y3OTExp+msMX18ry572eL2bYvfk7E8g+ED0S36ZBcwqPoae1VrUHisKHf8Hl87rq3XYY8pL3GWKhw4dhaq8ypRtKnXJ7u4zM898YbdPDulLMXJMbAnyWxkhvaXaLti7rEf6HMjdSNuONGUGK8Vb6N/lY+XIkkGvAb1Egoy0lNrPozWbWsfAr7rDUQKvPTflKiG6XXIh9zRYpJWrX4Ve5B9B50FmmNk+jzFvtlAITzYYNDWqrnyYHit9rq7wiUvMz1VrzsOxu51xPkP/0xWNIwWivcTZEjeNJNqn8mzny2TZK7kLxRXS1iDpZCVxeVEKX8r2MPK8w0T9GaPB7+sbp2W">
+<input type="hidden" name="hdnEncryptValues" value="LAOW/N42QGjtD99cDpEJeJWM8CMKPetUsBLcIN8KVIj7eluABYEt/3MqxIJfaY1Dk0mF/F15+gikYr5I8F8fmmN0LR+nVlEu+v/b0th+0aozMNpt1w==">
+</div></form>
+
+			
+	
+	<script src="/resources/assets/js/jquery.dataTables.min.js?ver=2016"></script>
+	<script type="text/javascript" nonce="">
+jQuery(document).ready(function() {
+	
+	 $("#regionORprojectregion").change(function(){
+		 regiorprojectregionChange();
+		 });
+		 
+		  $("#projectRegionID").change(function(event){
+		 getZonesCircle($(this).val());
+		 });
+		 
+		   $("#headQuarterID").change(function(event){
+		 getZonesCircle($(this).val());
+		 });
+		 $("#encadredPostID").change(function(event){
+		 getZonesCircle($(this).val());
+		 });
+		 $("#regionID").change(function(event){
+		 getZonesCircle($(this).val());
+		 });
+		 
+		 $("#sZone").change(function(event){
+		 getDivisions($(this).val());
+		 });
+		 
+		 $("#ddlDivision").change(function(event){
+		 getSubDivisions($(this).val());
+		 });
+		 
+		 $("#sProcurementType").change(function(event){
+		 ddlProcurementType($(this).val());
+		 });
+		 
+		 $("#dtBidClosingselect1").change(function(event){
+		 fnEnableDate();
+		 });
+		 
+		 $("#searchvalue").change(function(event){
+		 fnEnableValus();
+		 });
+	var myVar="";
+	var days="0";
+	var hdnTenderType="New Tenders";
+	
+	if(hdnTenderType!="")
+		hdnTenderType=hdnTenderType+" -";
+	
+	if(days == '1'){
+		 myVar='New Tenders - Active Online & Offline tenders Published within 24 Hrs'/* hdnTenderType+" Published within 24 Hrs"; */
+	$('#awardedDataTable').append('<caption style="caption-side: top-right" class="PageTitleNew">'+myVar+'</caption>');
+	}else if(days == '7'){
+		 myVar= 'New Tenders - Active Online & Offline tenders Published within One Week'  /* hdnTenderType+" Published within One Week"; */
+		$('#awardedDataTable').append('<caption style="caption-side: top-right" class="PageTitleNew">'+myVar+'</caption>');
+	}else{
+		 myVar= 'New Tenders - All Active Online & Offline tenders'/* hdnTenderType+"  All Tenders"; */
+		$('#awardedDataTable').append('<caption style="caption-side: top-right" class="PageTitleNew">'+myVar+'</caption>');
+	}
+	
+	temp(tempName, 'tenderDetailsHome');
+	 $('#awardedDataTable').DataTable( {
+		    "bPaginate": true,
+		  	"bInfo": true,		  	
+		 	"bServerSide" : true,
+		 	"bProcessing" : true,
+		 	"bLengthChange": true,
+			"lengthMenu": [[10, 20, 40, 50, 100], [10, 20, 40, 50, 100]],
+		 	"bFilter": false,
+		 	"sAjaxSource" : "TenderwithinOnedayJson.html?"+$("form#tenderDetailsHome").serialize(),
+		 	"sServerMethod":"POST",
+		 	"dom": 'C<"clear">rtip<l>',
+		 	"columnDefs": [ {
+				"targets": 8,
+				"orderable": false
+				},
+				], 
+			"drawCallback": function(){				    
+				      $("a.a_fnviewTenderDocuments" ).each(function( index, element ) {
+							 $(this).bind("click", function(){fnviewTenderDocuments($(this).data("pid"),$(this).data("iid"))});
+						 });
+				      $("a.a_viewBtn" ).each(function( index, element ) {
+							 $(this).bind("click", function(){viewBtn($(this).data("iid"),$(this).data("tcid"),$(this).data("pid"))});
+						 });
+				      $("a.a_viewCorrigendum" ).each(function( index, element ) {
+							 $(this).bind("click", function(){viewCorrigendum($(this).data("pid"))});
+						 });
+				   }   			
+	    } );
+});
+function SpChrNotAllow(input,msgId)
+{
+	var Cont_Value = input;
+
+	 if (Cont_Value!="")
+	{
+		for(var i=0;i<Cont_Value.length;i++)
+		{
+			var str=Cont_Value.charAt(i);
+			
+			if(str == "'" || str == '"')  
+			{	
+				
+				var doubleQuote = '"';
+   				var singleQuote = "'";
+   				$("#"+msgId).html("Special Characters are not allowed like "+singleQuote+" "+doubleQuote+" ").show();
+				return false;
+			}
+		}	
+	}
+			
+	return true;
+}
+</script>
+
+
+
+
+
+
+<title>Central Public Works Department - eTenders</title>
+
+<script type="text/javascript" nonce="">
+	window.history.forward(-1);
+	window.location.hash = "";
+	window.location.hash = "Again-No-back-button";//again because google chrome don't insert first hash into history111
+	window.onhashchange = function() {
+		window.location.hash = "";
+	}
+
+	window.onload = function() {
+		noBack();
+	}
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+	
+	document.getElementsByTagName("BODY")[0].onpageshow=function(){if (event.persisted) noBack();};
+</script>
+
+
+
+	
+		
+		<div class="tsFooterDown">
+		
+				<div class="tdCenter" align="center">
+				
+					<a href="#" id="a_aboutus" title="About Us">About Us</a> |
+								
+					<a href="#" id="a_termsconditions" title="Terms &amp; Conditions">Terms &amp; Conditions</a> | 
+					
+					<a href="#" id="a_disclaimer" title="Disclaimer">Disclaimer</a> | 
+					
+					<a href="#" id="a_privacy" title="Privacy Policy">Privacy Policy</a> |
+					
+					<a href="#" id="a_copyright" title="Copyright Policy">Copyright Policy</a> |
+					
+					<a href="#" id="a_hyperlinking" title="Hyperlinking Policy">Hyperlinking Policy</a> |
+					
+					<a href="#" id="a_feedback" title="Feedback">Feedback</a> |
+					
+					<a href="#" id="a_circulars" title="Circulars">Circulars</a> |
+					
+					<a href="#" id="a_contactus" title="Contact Us">Contact Us</a> |
+					
+					<a href="#" id="a_webmaster" title="Web Master">Web Master</a>
+				
+				</div>
+				<div class="tdCenter" align="center" title="Owned by Central Public Works Department, Government of India, Room No. 331, A wing, CPWD, Nirman Bhawan, New Delhi.">
+					<p class="tCurrent1 p10"> © Owned by Central Public Works Department, Government of India, Room No. 331, A wing, CPWD, Nirman Bhawan, New Delhi.. </p> <br>
+							Last reviewed and updated on 15th Feb, 2023
+				</div>
+				
+				<div class="tdCenter" align="center">
+					<p class="tCurrent1 p10" title=""></p>
+				</div>
+		</div>
+	
+	 
+	
+
+		<script src="/resources/jsFiles/emsigner.js?ver=15042019"></script>
+
+	 
+	<script src="/resources/jsFiles/homemenu.js"></script>
+	 <script type="text/javascript" nonce="">
+         $(document).ready(function () {
+//         	 alert("hvj");
+           
+//              $('.datepicker5').datepicker();
+onfundatepickerwithtime();
+$('.datepickerwithtime').datetimepicker({
+	 format: 'DD/MM/YYYY HH:mm', 
+	// toolbarPlacement: 'bottom',
+	showTodayButton: true,
+	useCurrent:false,
+	 showClear:true,
+	// daysOfWeekDisabled: [0,6],
+	 sideBySide: true,
+// 	 showClose:true,
+// debug: true,
+// 	 sideBySide:true,
+	
+}).on('dp.show dp.update', function () {
+$(".datepicker-years .picker-switch").removeAttr('title')
+    //.css('cursor', 'default')  <-- this is not needed if the CSS above is used
+    //.css('background', 'inherit')  <-- this is not needed if the CSS above is used
+    .on('click', function (e) {
+        e.stopPropagation();
+    });
+
+   /*  $(".datepickerwithtime").on('change', function (e) {
+//     	 $(".bootstrap-datetimepicker-widget").hide();
+$('.datepickerwithtime').datetimepicker('hide');
+//     	 $(".datepickerwithtime").focusout();
+//   $(this).datepicker('hide');
+    	 //e.stopPropagation();
+    }); */
+});
+$('.datepickerwithouttime').datetimepicker({
+	 format: 'DD/MM/YYYY',
+	// daysOfWeekDisabled: [0,6],
+	showTodayButton: true,
+	useCurrent:false,
+	 showClear:true,
+// 	 debug: true,
+// 	 showClose:true,
+	 
+	
+}).on('dp.show dp.update', function () {
+$(".datepicker-years .picker-switch").removeAttr('title')
+    //.css('cursor', 'default')  <-- this is not needed if the CSS above is used
+    //.css('background', 'inherit')  <-- this is not needed if the CSS above is used
+    .on('click', function (e) {
+        e.stopPropagation();
+    });
+});
+/* $('.datepickerwithtime tbody').on('onchange', function(){
+	$('.datepickerwithtime').hide()
+}); */
+$('.datepickerwithtime').datetimepicker().on('dp.change', function (event) {
+	$('.datepicker').on('click', function (event) {
+	$('.datepickerwithtime').datetimepicker('hide');
+	});
+});
+$('.datetimepicker-addon').on('click', function() {
+  	$(this).prev('input.datepickerwithtime').data('DateTimePicker').toggle();
+  });
+// $(".datepickerwithtime").datetimepicker().on("dp.hide", function () { $(".datepickerwithtime input").blur(); });
+$('.datepickerwithtime tbody').on('onblur', function(){ $('.datepickerwithtime').hide() });
+$('.datepickerwithouttime tbody').on('onblur', function(){ $('.datepickerwithouttime').hide() });
+
+            
+         });
+      </script>	
+<script type="text/javascript" nonce="">
+  
+function onfundatepickerwithtime(){
+	  
+	  $('.datepickerwithtime').datetimepicker({
+		  	format: 'DD/MM/YYYY HH:mm',
+			// toolbarPlacement: 'bottom',
+			showTodayButton: true,
+			useCurrent:false,
+			 showClear:true,
+			 //daysOfWeekDisabled: [0,6],
+			 sideBySide: true,
+//		 	 showClose:true,
+// 		debug: true,
+//		 	 sideBySide:true,
+			
+		}).on('dp.show dp.update', function () {
+		$(".datepicker-years .picker-switch").removeAttr('title')
+		    //.css('cursor', 'default')  <-- this is not needed if the CSS above is used
+		    //.css('background', 'inherit')  <-- this is not needed if the CSS above is used
+		    .on('click', function (e) {
+		        e.stopPropagation();
+		    });
+
+		   /*  $(".datepickerwithtime").on('change', function (e) {
+//		     	 $(".bootstrap-datetimepicker-widget").hide();
+		$('.datepickerwithtime').datetimepicker('hide');
+//		     	 $(".datepickerwithtime").focusout();
+		//   $(this).datepicker('hide');
+		    	 //e.stopPropagation();
+		    }); */
+		});
+	  $('.datepickerwithouttime').datetimepicker({
+			 format: 'DD/MM/YYYY',
+			// daysOfWeekDisabled: [0,6],
+			showTodayButton: true,
+			useCurrent:false,
+			 showClear:true,
+// 		 	 debug: true,
+//		 	 showClose:true,
+			 
+			
+		}).on('dp.show dp.update', function () {
+		$(".datepicker-years .picker-switch").removeAttr('title')
+		    //.css('cursor', 'default')  <-- this is not needed if the CSS above is used
+		    //.css('background', 'inherit')  <-- this is not needed if the CSS above is used
+		    .on('click', function (e) {
+		        e.stopPropagation();
+		    });
+		});
+	  $('.datepickerwithtime').datetimepicker().on('dp.change', function (event) {
+			$('.datepicker').on('click', function (event) {
+			$('.datepickerwithtime').datetimepicker('hide');
+			});
+		});
+		$('.datetimepicker-addon').on('click', function() {
+		  	$(this).prev('input.datepickerwithtime').data('DateTimePicker').toggle();
+		  });
+		// $(".datepickerwithtime").datetimepicker().on("dp.hide", function () { $(".datepickerwithtime input").blur(); });
+		$('.datepickerwithtime tbody').on('onblur', function(){ $('.datepickerwithtime').hide() });
+		$('.datepickerwithouttime tbody').on('onblur', function(){ $('.datepickerwithouttime').hide() });
+  }
+</script>
+	<script type="text/javascript" nonce="">
+$(document).ready(function(){
+   $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+
+
+</div></div>
+
+
+</body></html>
